@@ -1,0 +1,13 @@
+{
+   "data":[
+    {
+        "element_id":5,
+        "system_name":"screen_clear",
+        "category":6,
+        "priority":3,
+        "similar_words":["データ","情報"],
+        "help_text": "何を保存するのか",
+        "research_help_words":["c 二次元配列",""]
+    }
+   ]
+}

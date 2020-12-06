@@ -1,0 +1,37 @@
+@charset "UTF-8";
+#control_area{
+    height: 400px;
+}
+#chat_area{
+    position: relative;
+}
+#chat_text {
+    position: absolute;
+    color: red;
+    top: 0;
+    margin-left: 20px;
+}
+#chat_img {
+    width: 100%;
+}
+
+.function_card{
+    position: relative;
+}
+
+.function_card_img{
+    height: 80px;
+}
+
+.function_card_delete_button{
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 100px;
+}
+
+.function_card_text{
+    position: absolute;
+    top: 10px;
+    margin-right: 20px;
+}

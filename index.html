@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="src/style.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.22/rx.all.js"></script>
+    <script src="lib/js.cookie.js"></script>
+
+    <script src="src/Data/ColumnData.js"></script>
+    <script src="src/Data/SaveData.js"></script>
+    <script src="src/Data/SaveDataColumn.js"></script>
+    <script src="src/DataLoader.js"></script>
+    <script src="src/TextController.js"></script>
+    <script src="src/CardController.js"></script>
+    <script src="src/FunctionCard.js"></script>
+    <script src="src/SaveDataManager.js"></script>
+    <script src="src/SplitController.js"></script>
+    <script src="src/main.js"></script>
+</head>
+<body>
+    <div id="control_area">
+        <!--
+         <div class="function_card">
+                <img class="function_card_img" src="img/function_card_base.jpg">
+                <img class="function_card_delete_button" src="img/function_card_delete_button.png">
+                <p class="function_card_text">てきすと</p>
+            </div>
+        -->
+        <div id="card_root">
+
+        </div>
+    </div>
+    <input id="input_box" type="text" >
+    <button id="input_submit">submit</button>
+    <div id="chat_area">
+        <img id="chat_image" src="img/chat_area.png">
+        <p id="chat_text">ここにかいわ</p>
+    </div>
+</body>
+</html>
