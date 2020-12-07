@@ -1,4 +1,4 @@
-class CardController {
+class FunctionCardController {
     constructor(card_root,save_data_manager) {
         this.card_root=card_root;
         this.save_data_manager=save_data_manager;
@@ -29,6 +29,6 @@ class CardController {
     }
 
     SwitchDisplay(flag){
-
+        this.card_root.style.display=flag;
     }
 }

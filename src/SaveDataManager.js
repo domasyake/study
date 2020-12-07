@@ -22,8 +22,6 @@ class SaveDataManager {
             this.save_data= new SaveData(1, 1, list);
             this.Save();
         }else{
-            // Cookies.remove('save_data');
-            // console.log("消しﾏｧｽ")
             let json=JSON.parse(data);
             this.save_data=new SaveData(json.current_step,json.current_line,json.tables);
         }

@@ -13,15 +13,18 @@ async function InitOnDomLoad() {
     let save_data_manager=new SaveDataManager();
     save_data_manager.Load();
 
-    let card_controller = new CardController(document.getElementById("card_root"),save_data_manager);
+    let card_controller = new FunctionCardController(document.getElementById("card_root"),save_data_manager);
     const split_controller=new SplitController(column_json.data,save_data_manager,card_controller);
+    let media_controller=new MediaController(document.getElementById("control_area"));
 
     text_controller = new TextController(
         document.getElementById("input_box"),
         document.getElementById("input_submit"),
         document.getElementById("chat_area"),
         document.getElementById("chat_text"),
-        split_controller
+        split_controller,
+        card_controller,
+        media_controller
     );
 
     await text_controller.LoadData("script/test.csv");

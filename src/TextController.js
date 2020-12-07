@@ -1,9 +1,12 @@
 class TextController {
 
-    constructor(input_box,submit_button,display_area,chat_area,split_controller) {
+    constructor(input_box,submit_button,display_area,chat_area,
+                split_controller,card_controller,media_controller) {
         this.input_box=input_box;
         this.chat_area=chat_area;
         this.split_controller=split_controller;
+        this.card_controller=card_controller;
+        this.media_controller=media_controller;
 
         this.current_data=[];
         this.on_area_click=new Rx.Subject();
@@ -56,6 +59,26 @@ class TextController {
                     if(!this.split_controller.checkComplete()){
                         current_line--;
                     }
+                    break;
+                case "clF":
+                    this.card_controller.SwitchDisplay(false);
+                    this.setText(item[0]);
+                    await this.on_area_click.first().toPromise();
+                    break;
+                case "pl1":
+                    this.setText(item[0]);
+                    await this.media_controller.PlayVideo("media/test.mp4");
+                    await this.on_area_click.first().toPromise();
+                    break;
+                case "v1":
+                    this.setText(item[0]);
+                    this.media_controller.visibleImg("media/test.png");
+                    await this.on_area_click.first().toPromise();
+                    break;
+                case "iv1":
+                    this.setText(item[0]);
+                    this.media_controller.invisibleImg();
+                    await this.on_area_click.first().toPromise();
                     break;
                 default:
                     break;
