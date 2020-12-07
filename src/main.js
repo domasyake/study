@@ -23,4 +23,10 @@ async function InitOnDomLoad() {
         document.getElementById("chat_text"),
         split_controller
     );
+
+    await text_controller.LoadData("script/test.csv");
+    text_controller.StartChat();
+
+    // let step_manager=new StepManager(text_controller,save_data_manager);
+    // step_manager.StartStep();
 }

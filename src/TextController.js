@@ -13,12 +13,10 @@ class TextController {
             .subscribe(()=>this.SubmitNextButton());
         Rx.Observable.fromEvent(display_area,"click")
             .subscribe(()=>this.ClickArea());
-        this.LoadData();
     }
 
-    async LoadData(){
-        this.current_data=await getCsvData("script/test.csv");
-        this.StartChat();
+    async LoadData(file_name){
+        this.current_data=await getCsvData(file_name);
     }
 
     async StartChat(){

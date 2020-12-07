@@ -3,6 +3,15 @@ class SaveDataManager {
     constructor() {
         this.save_data=null;
         this.on_update_data=new Rx.Subject();
+
+        document.body.addEventListener('keydown',
+            event => {
+                if (event.key === 'v') {
+                    alert("消しﾏｧｽ");
+                    Cookies.remove('save_data');
+                    console.log("消しﾏｧｽ")
+                }
+            });
     }
 
     Load(){
@@ -10,7 +19,7 @@ class SaveDataManager {
         console.log(data)
         if(data===undefined){
             let list = []
-            this.save_data= new SaveData(0, 1, list);
+            this.save_data= new SaveData(1, 1, list);
             this.Save();
         }else{
             // Cookies.remove('save_data');
@@ -21,7 +30,10 @@ class SaveDataManager {
     }
 
     pushTable(element_id,name){
-        let uid_max=this.save_data.table.map(n=>n.unique_id).reduce((a,b)=>Math.max(a,b));
+        let uid_max=0
+        if(this.save_data.table.length!==0){
+            uid_max=this.save_data.table.map(n=>n.unique_id).reduce((a,b)=>Math.max(a,b));
+        }
         this.save_data.table.push(new SaveDataColumn(element_id,uid_max+1,name));
         this.on_update_data.onNext();
         this.Save();
