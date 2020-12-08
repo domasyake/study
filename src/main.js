@@ -14,7 +14,7 @@ async function InitOnDomLoad() {
     save_data_manager.Load();
 
     let card_controller = new FunctionCardController(document.getElementById("card_root"),save_data_manager);
-    const split_controller=new SplitController(column_json.data,save_data_manager,card_controller);
+    const split_controller=new SplitController(column_json.data,save_data_manager);
     let media_controller=new MediaController(document.getElementById("control_area"));
 
     text_controller = new TextController(

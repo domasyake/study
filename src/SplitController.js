@@ -1,16 +1,11 @@
 class SplitController{
 
-    constructor(column,save_data_manager,card_controller) {
+    constructor(column,save_data_manager) {
         this.column=column;
         this.save_data_manager=save_data_manager;
-        this.card_controller=card_controller;
 
         this.split_data=null;
-        card_controller.delete_event
-            .subscribe(val=>{
-                this.save_data_manager.deleteAtTable(val);
-            })
-
+        console.log(this.column.map(n=>n.matches.map(m=>m.similar_words)))
         this.loadJson();
     }
 
@@ -19,12 +14,30 @@ class SplitController{
     }
 
     checkWord(word){
-        console.log("入力"+word);
-        let target=this.column.find(n=>n.similar_words.some(m=>m===word));
+        console.log("入力:"+word);
+
+        let target=this.column
+            .find(n=>n.matches.some(m=>m.similar_words.some(k=>word.includes(k))));
         if (target !== undefined) {
-            //成功処理
-            this.save_data_manager.pushTable(target.element_id,word);
-            return this.split_data.agree;
+            //該当するのは見つかった
+            let help_texts=[];
+            console.log(target)
+            for (let i=0;i<target.matches.length;i++){
+                if(!target.matches[i].similar_words.some(n=>word.includes(n))){
+                    console.log(target.matches[i].help_text)
+                    help_texts.push(target.matches[i].help_text);
+                }
+            }
+            //成功
+            if(help_texts.length===0){
+                this.save_data_manager.pushTable(target.element_id,word);
+                return this.split_data.agree;
+            }else{
+                let res=this.split_data.near;
+                help_texts.forEach(n=>res+=n);
+                return res;
+            }
+
         } else {
             return this.split_data.disagree;
         }
@@ -32,6 +45,10 @@ class SplitController{
 
     checkComplete(){
         return false;
+    }
+
+    getHint(){
+
     }
 
 }

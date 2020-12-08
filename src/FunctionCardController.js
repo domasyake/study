@@ -26,6 +26,10 @@ class FunctionCardController {
                     }
                 }
             })
+        this.delete_event
+            .subscribe(val=>{
+                this.save_data_manager.deleteAtTable(val);
+            })
     }
 
     SwitchDisplay(flag){

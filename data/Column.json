@@ -1,13 +1,44 @@
 {
    "data":[
     {
-        "element_id":5,
+        "element_id":2,
         "system_name":"screen_clear",
-        "category":6,
+        "category":2,
         "priority":3,
-        "similar_words":["データ","情報"],
-        "help_text": "何を保存するのか",
+        "matches":[
+          {
+           "similar_words": ["データ","情報","マス","マルバツ"],
+            "help_text":"何に保存するのか"
+          },
+          {
+            "similar_words": ["3*3","二次元配列","3かける3"],
+            "help_text":"どういうデータ?"
+          },
+          {
+            "similar_words": ["保存","保持","セーブ"],
+            "help_text":"データをどうするのか"
+          }
+        ],
+        "hint_text": "何を保存するのか",
         "research_help_words":["c 二次元配列",""]
-    }
+    },
+     {
+       "element_id":5,
+       "system_name":"screen_clear",
+       "category":6,
+       "priority":3,
+       "matches":[
+         {
+           "similar_words": ["スクリーン","画面","コンソール"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["削除","消去","消す"],
+           "help_text":"コンソールにどんな操作をさせるのか"
+         }
+       ],
+       "hint_text": "何を保存するのか",
+       "research_help_words":["c 二次元配列",""]
+     }
    ]
 }
