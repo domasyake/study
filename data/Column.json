@@ -37,7 +37,7 @@
            "help_text":"コンソールにどんな操作をさせるのか"
          }
        ],
-       "hint_text": "何を保存するのか",
+       "hint_text": "画面",
        "research_help_words":["c 二次元配列",""]
      }
    ]

@@ -16,7 +16,12 @@ async function InitOnDomLoad() {
     let card_controller = new FunctionCardController(document.getElementById("card_root"),save_data_manager);
     const split_controller=new SplitController(column_json.data,save_data_manager);
     let media_controller=new MediaController(document.getElementById("control_area"));
-
+    let hint_controller=new HintController(
+        document.getElementById("hint_button"),
+        document.getElementById("hint_text"),
+        save_data_manager,
+        split_controller
+    );
     text_controller = new TextController(
         document.getElementById("input_box"),
         document.getElementById("input_submit"),
