@@ -44,7 +44,8 @@ class SplitController{
     }
 
     checkComplete(){
-        return false;
+        return this.column.every(n=>this.save_data_manager.save_data.table
+            .some(m=>m.element_id===n.element_id));
     }
 
     getHint(){
