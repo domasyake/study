@@ -22,25 +22,45 @@
     <script src="src/main.js"></script>
 </head>
 <body>
+    <header>
+    </header>
     <div id="control_area">
-        <!--
-         <div class="function_card">
-                <img class="function_card_img" src="img/function_card_base.jpg">
+
+
+        <div id="function_card_root">
+            <div class="function_card">
+                <img class="function_card_img" src="img/function_card.png">
                 <img class="function_card_delete_button" src="img/function_card_delete_button.png">
                 <p class="function_card_text">てきすと</p>
             </div>
-        -->
-        <div id="card_root">
+
+        </div>
+        <div id="moveable_card_roo">
+            <div id="moveable_decide">
+
+            </div>
+            <div id="moveable_list">
+
+            </div>
+        </div>
+        <div id="assist_card_root">
 
         </div>
     </div>
-    <input id="input_box" type="text" >
-    <button id="input_submit">submit</button>
-    <div id="chat_area">
-        <img id="chat_image" src="img/chat_area.png">
-        <p id="chat_text">ここにかいわ</p>
+    <div id="char_area">
+        <div id="chat_area">
+            <img id="chat_image" src="img/chat_area.png">
+            <p id="chat_text">ここにかいわ</p>
+        </div>
+        <img id="char" src="img/char_1.png">
     </div>
-    <button id="hint_button">hint</button>
-    <div id="hint_text">no hint</div>
+    <div id="input_area">
+        <input id="input_box" type="text" >
+        <button id="input_submit">submit</button>
+    </div>
+    <div id="hint_area">
+        <button id="hint_button">hint</button>
+        <div id="hint_text">no hint</div>
+    </div>
 </body>
 </html>

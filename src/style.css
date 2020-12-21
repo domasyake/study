@@ -1,9 +1,32 @@
 @charset "UTF-8";
+
+body{
+    background-image: url("../img/bg.png");
+    background-repeat: no-repeat;
+
+}
+header{
+    height: 100px;
+}
+/*=========================Control Area=========================*/
 #control_area{
-    height: 400px;
+    position: relative;
+    height: 500px;
+}
+
+/*=========================Char Area=========================*/
+#char_area{
+    display: flex;
+    justify-content: flex-start;
+    width: auto;
+    align-items: center;
 }
 #chat_area{
     position: relative;
+    width: 85%;
+}
+#char{
+    width: 15%;
 }
 #chat_text {
     position: absolute;
@@ -11,18 +34,36 @@
     top: 0;
     margin-left: 20px;
 }
-#chat_img {
+#chat_image {
     width: 100%;
 }
+/*=========================Input Area=========================*/
+#input_area{
+    display: flex;
+    height: 50px;
+}
+/*=========================Hint Area=========================*/
+#hint_area{
+    display: flex;
+    height: 50px;
+}
 
+/*=========================Function Cards=========================*/
+#function_card_root{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
 .function_card{
     position: relative;
+
 }
 
 .function_card_img{
     height: 80px;
 }
-
 .function_card_delete_button{
     height: 20px;
     position: absolute;
@@ -31,6 +72,26 @@
 }
 
 .function_card_text{
+    position: absolute;
+    top: 10px;
+    margin-right: 20px;
+}
+
+/*=========================Assist Cards=========================*/
+.assist_card{
+    position: relative;
+}
+
+.assist_card_img{
+    height: 80px;
+}
+.assist_card_delete_button{
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 100px;
+}
+.assist_card_text{
     position: absolute;
     top: 10px;
     margin-right: 20px;

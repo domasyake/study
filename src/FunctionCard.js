@@ -10,7 +10,7 @@ class FunctionCard {
 
         let img=document.createElement("img");
         img.className="function_card_img";
-        img.src="img/function_card_base.jpg";
+        img.src="img/function_card.png";
         this.card_root.appendChild(img);
 
         let delete_button=document.createElement("img");

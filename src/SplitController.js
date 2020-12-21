@@ -37,7 +37,6 @@ class SplitController{
                 help_texts.forEach(n=>res+=n);
                 return res;
             }
-
         } else {
             return this.split_data.disagree;
         }
