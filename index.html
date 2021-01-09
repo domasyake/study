@@ -23,24 +23,50 @@
 </head>
 <body>
     <header>
+        <div id="step">Step 1/3</div>
     </header>
     <div id="control_area">
+        <!--<div id="function_card_root">
 
+       <div class="function_card">
+           <img class="function_card_img" src="img/function_card.png">
+           <img class="function_card_delete_button" src="img/function_card_delete_button.png">
+           <p class="function_card_text">てきすとてきすとてきすとてきすとてきすと</p>
+       </div>
 
-        <div id="function_card_root">
-            <div class="function_card">
-                <img class="function_card_img" src="img/function_card.png">
-                <img class="function_card_delete_button" src="img/function_card_delete_button.png">
-                <p class="function_card_text">てきすと</p>
-            </div>
-
-        </div>
-        <div id="moveable_card_roo">
+        </div>    -->
+        <div id="moveable_card_root">
             <div id="moveable_decide">
+                <div class="moveable_base_card">
+                    <img class="moveable_card_img" src="img/moveable_card.png">
+                    <p class="moveable_card_text">てきすと</p>
+                    <img class="moveable_pin" src="img/move_able_pin.png">
+                    <div mv_child_root class="mv_child_root">
+                        <div class="moveable_card">
+                            <img class="moveable_card_img" src="img/moveable_card.png">
+                            <p class="moveable_card_text">てきすと</p>
+                        </div>
+                        <div class="moveable_base_card">
+                            <img class="moveable_card_img" src="img/moveable_card.png">
+                            <p class="moveable_card_text">てきすと</p>
+                            <img class="moveable_pin" src="img/move_able_pin.png">
+                            <div mv_child_root class="mv_child_root">
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="moveable_card">
+                    <img class="moveable_card_img" src="img/moveable_card.png">
+                    <p class="moveable_card_text">てきすと</p>
+                </div>
             </div>
             <div id="moveable_list">
-
+                <div class="moveable_card">
+                    <img class="moveable_card_img" src="img/moveable_card.png">
+                    <p class="moveable_card_text">てきすと</p>
+                </div>
             </div>
         </div>
         <div id="assist_card_root">
@@ -56,7 +82,7 @@
     </div>
     <div id="input_area">
         <input id="input_box" type="text" >
-        <button id="input_submit">submit</button>
+        <input type="submit" id="input_submit" value="決定"></input>
     </div>
     <div id="hint_area">
         <button id="hint_button">hint</button>

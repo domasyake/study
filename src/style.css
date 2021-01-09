@@ -7,6 +7,16 @@ body{
 }
 header{
     height: 100px;
+    width: 100vw;
+}
+:focus {
+    outline: none;
+}
+#step{
+    position: absolute;
+    color: crimson;
+    top: 20px;
+    right: 20px;
 }
 /*=========================Control Area=========================*/
 #control_area{
@@ -20,34 +30,93 @@ header{
     justify-content: flex-start;
     width: auto;
     align-items: center;
+    height: 200px;
 }
 #chat_area{
     position: relative;
     width: 85%;
 }
+#chat_image:active {
+    padding-top: 6px;
+    padding-bottom: 4px;
+    border: 0px;
+}
 #char{
     width: 15%;
 }
 #chat_text {
+    color: #ff0000;
     position: absolute;
-    color: red;
-    top: 0;
-    margin-left: 20px;
+    pointer-events: none;
+    top: 2%;
+    left: 2vw;
+    font-size: 3vh;
 }
 #chat_image {
     width: 100%;
+
 }
 /*=========================Input Area=========================*/
 #input_area{
     display: flex;
     height: 50px;
 }
+
+#input_box{
+    text-indent: 1em;
+    width: 700px;
+    border: 0px;
+    background: url("../img/input_field.png") left top no-repeat;
+    background-size: 100% 100%;
+}
+
+#input_submit{
+    border: 0px;
+    width:204px;
+
+    background: url("../img/submt_button_1.png") left top no-repeat;
+    background-size: 100% 100%;
+}
+#input_submit:hover{
+    cursor: pointer;
+    opacity:0.7;
+}
+
+#input_submit:active{
+    padding-top:6px;
+    padding-bottom:4px;
+
+}
+
 /*=========================Hint Area=========================*/
 #hint_area{
     display: flex;
     height: 50px;
 }
 
+#hint_button{
+    border: 0px;
+    width:100px;
+
+    background: url("../img/submt_button_1.png") left top no-repeat;
+    background-size: 100% 100%;
+}
+#hint_button:hover{
+    cursor: pointer;
+    opacity:0.7;
+}
+
+#hint_button:active{
+    padding-top:6px;
+    padding-bottom:4px;
+
+}
+
+#hint_text{
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
 /*=========================Function Cards=========================*/
 #function_card_root{
     height: 100%;
@@ -65,16 +134,20 @@ header{
     height: 80px;
 }
 .function_card_delete_button{
-    height: 20px;
+    height: 30px;
     position: absolute;
-    top: 0;
-    left: 100px;
+    top: -10px;
+    right: -20px;
 }
 
 .function_card_text{
     position: absolute;
-    top: 10px;
-    margin-right: 20px;
+    width: 80%;
+    top: 0;
+    bottom: 0;
+    left: 10px;
+    margin: auto;
+    margin-left: 30px;
 }
 
 /*=========================Assist Cards=========================*/
@@ -95,4 +168,64 @@ header{
     position: absolute;
     top: 10px;
     margin-right: 20px;
+    margin-left: 30px;
+}
+
+/*=========================Assist Cards=========================*/
+#moveable_card_root{
+    height: 100%;
+    display: flex;
+}
+.moveable_card{
+    position: relative;
+}
+
+.moveable_card_img{
+    height: 50px;
+    width: 200px;
+}
+
+.moveable_card_text{
+    position: absolute;
+    top: -5px;
+    margin-right: 20px;
+    margin-left: 30px;
+    pointer-events: none;
+}
+.moveable_base_card{
+    position: relative;
+    width: auto;
+}
+.moveable_pin{
+    height: 30px;
+    position: absolute;
+    top: 40px;
+    left: 10px;
+}
+.mv_child_root{
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    min-height: 50px;
+}
+
+
+#moveable_decide{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+#moveable_list{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
 }
