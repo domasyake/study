@@ -18,6 +18,15 @@ header{
     top: 20px;
     right: 20px;
 }
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
 /*=========================Control Area=========================*/
 #control_area{
     position: relative;
@@ -177,12 +186,17 @@ header{
     display: flex;
 }
 .moveable_card{
+    margin-top: 5px;
+
     position: relative;
+    width: auto;
+    height: auto;
 }
 
 .moveable_card_img{
     height: 50px;
     width: 200px;
+    pointer-events: none;
 }
 
 .moveable_card_text{
@@ -192,10 +206,7 @@ header{
     margin-left: 30px;
     pointer-events: none;
 }
-.moveable_base_card{
-    position: relative;
-    width: auto;
-}
+
 .moveable_pin{
     height: 30px;
     position: absolute;
@@ -204,21 +215,27 @@ header{
 }
 .mv_child_root{
     padding-left: 30px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    min-height: 50px;
+    padding-top: 10px;
+    min-height: 20px;
+    height: auto;
+}
+
+.mv_hovering {
+    z-index: 5;
 }
 
 
 #moveable_decide{
     height: 100%;
+    width: 50%;
+}
+
+.moveable_decide_holder{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    width: 50%;
+
 }
 
 #moveable_list{
