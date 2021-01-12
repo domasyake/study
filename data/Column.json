@@ -265,6 +265,24 @@
        "research_help_words":["c ループ　抜ける"],
        "move_help_text":"ループを抜ける判定は勝敗判定の後です",
        "assist_text": "勝者がいた場合はループを抜けます"
+     },
+     {
+       "element_id":13,
+       "system_name":"switch_player",
+       "category":10,
+       "priority":2,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["ターン"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "",
+       "research_help_words":["c if"],
+       "move_help_text":"プレイヤーの切替はターンの終わりに行いましょう",
+       "assist_text": "ifを2つにせず、1つのif elseで判定と切替を行いましょう"
      }
    ]
 }
