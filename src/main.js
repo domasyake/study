@@ -30,7 +30,8 @@ async function InitOnDomLoad() {
         document.getElementById("chat_text"),
         split_controller,
         card_controller,
-        media_controller
+        media_controller,
+        moveable_controller
     );
 
     await text_controller.LoadData("script/test.csv");

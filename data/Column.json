@@ -1,33 +1,238 @@
 {
    "data":[
-    {
-        "element_id":2,
-        "system_name":"screen_clear",
-        "category":2,
-        "priority":3,
-        "matches":[
-          {
-           "similar_words": ["データ","情報","マス","マルバツ"],
-            "help_text":"何に保存するのか"
-          },
-          {
-            "similar_words": ["3*3","二次元配列","3かける3"],
-            "help_text":"どういうデータ?"
-          },
-          {
-            "similar_words": ["保存","保持","セーブ"],
-            "help_text":"データをどうするのか"
-          }
-        ],
-        "hint_text": "何を保存するのか",
-        "research_help_words":["c 二次元配列",""]
-    },
+     {
+       "element_id":1,
+       "system_name":"prepare_turn_player",
+       "category":1,
+       "priority":3,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["ターン"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "",
+       "research_help_words":["c 変数宣言"],
+       "move_help_text":"データの準備はループより前に行いましょう",
+       "assist_text": "int型にし、プレイしている人を1、敵を2と定義するとマス目と値が一致するので便利です"
+     },
+     {
+       "element_id":2,
+       "system_name":"prepare_field",
+       "category":1,
+       "priority":3,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["マス","マルバツ"],
+           "help_text":"何に保存するのか"
+         },
+         {
+           "similar_words": ["3*3","二次元配列","3かける3"],
+           "help_text":"どういうデータなのか"
+         },
+         {
+           "similar_words": ["保存","保持","セーブ"],
+           "help_text":"データをどうするのか"
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "マス目の情報を管理するにはどうすればいいか",
+       "research_help_words":["c 二次元配列"],
+       "move_help_text":"データの準備はループより前に行いましょう",
+       "assist_text": "int型にし、空を0、○を1、×を2として定義すると、プレイヤーのデータと一致するので便利です。\n二次元配列の添え数は[横][縦]です"
+     },
+     {
+       "element_id":3,
+       "system_name":"main_loop",
+       "category":2,
+       "priority":3,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["ループ"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "",
+       "research_help_words":["c for",""],
+       "move_help_text":"",
+       "assist_text": "9回という回数が決まっているため、whileよりforのが良いです"
+     },
+     {
+       "element_id":4,
+       "system_name":"display_field",
+       "category":3,
+       "priority":3,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["マス","","マス","マルバツ"],
+           "help_text":"何を表示するのか"
+         },
+         {
+           "similar_words": ["表示","描画","3かける3"],
+           "help_text":"マス目をどうするのか"
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "画面には何を表示するのか",
+       "research_help_words":["c 二次元配列","c 二重ループ"],
+       "move_help_text":"描画はループの中の最初に行いましょう",
+       "assist_text": "マス目は二次元配列なので、二重のforを使いましょう"
+     },
      {
        "element_id":5,
-       "system_name":"screen_clear",
+       "system_name":"if_player",
+       "category":4,
+       "priority":2,
+       "child_category":[5,6],
+       "matches":[
+         {
+           "similar_words": ["プレイヤー"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "",
+       "research_help_words":["c if"],
+       "move_help_text":"",
+       "assist_text": "そのターンのプレイヤーがどちらか判定しましょう"
+     },
+     {
+       "element_id":6,
+       "system_name":"input",
+       "category":5,
+       "priority":3,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["入力","マス"],
+           "help_text":"何でマスを指定するのか"
+         },
+         {
+           "similar_words": ["受け取","受取","する","させる"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [
+         {
+           "similar_words": ["○","丸","まる","マル"],
+           "help_text":"この機能と○を付ける機能は分けた方がよい"
+         }
+       ],
+       "hint_text": "○をつけるにはどうするのか",
+       "research_help_words":["c scanf"],
+       "move_help_text":"入力はユーザーのターンのみ行いましょう",
+       "assist_text": "scnaf関数は、入力を入れる変数の型に変換してくれるので、入力を受け付ける変数はint型にする"
+     },
+     {
+       "element_id":7,
+       "system_name":"user_behaviour",
        "category":6,
        "priority":3,
+       "child_category":[],
        "matches":[
+         {
+           "similar_words": ["○","丸","まる","マル"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["つける","付ける","入れる",""],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [
+         {
+           "similar_words": ["受け取","受取","入力する","入力させる"],
+           "help_text":"この機能と入力は分けた方がよい"
+         }
+       ],
+       "hint_text": "入力を基に何をするのか",
+       "research_help_words":["c 二重ループ"],
+       "move_help_text":"入力を行ってからでないと○はつけれません",
+       "assist_text": "1~9の入力の値は、二重ループの変数をi,jとした時、i*3+jに一致します"
+     },
+     {
+       "element_id":8,
+       "system_name":"if_enemy",
+       "category":7,
+       "priority":2,
+       "child_category":[8],
+       "matches":[
+         {
+           "similar_words": ["敵"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "",
+       "research_help_words":["c if"],
+       "move_help_text":"",
+       "assist_text": "そのターンのプレイヤーがどちらか判定しましょう"
+     },
+     {
+       "element_id":9,
+       "system_name":"enemy_behaviour",
+       "category":8,
+       "priority":3,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["ランダム","乱数"],
+           "help_text":"敵はどうやってマス目を付けるか"
+         },
+         {
+           "similar_words": ["×","バツ","ばつ"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["つける","付ける","入れる",""],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "敵の行動について",
+       "research_help_words":["c 二重ループ","c 乱数","c 無限ループ"],
+       "move_help_text":"敵の行動は敵のターンにのみ行いましょう",
+       "assist_text": "空いているマスに×をつけるためには、無限ループの中でランダムなマス目をチェックし、空いているマス目だった場合に×を付けbreakするのが一番楽です"
+     },
+     {
+       "element_id":10,
+       "system_name":"judge",
+       "category":9,
+       "priority":3,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["負","かちまけ","勝"],
+           "help_text":"何を判定するのか"
+         },
+         {
+           "similar_words": ["判定","判断"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "ターンの終わりにする処理",
+       "research_help_words":["c 二重ループ"],
+       "move_help_text":"勝敗判定はユーザーか敵の行動が終わってからです",
+       "assist_text": "垂直水平方向と斜め方向で判定します。垂直水平は二重ループを使用し順番に、斜めは配列の中央(1,1)と(0,0),(2,2)又は(2,0),(0,2)を調べましょう、"
+     },
+     {
+       "element_id":11,
+       "system_name":"clear",
+       "category":10,
+       "priority":3,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["最後","終わり"],
+           "help_text":"いつこの処理をするのか"
+         },
          {
            "similar_words": ["スクリーン","画面","コンソール"],
            "help_text":""
@@ -37,8 +242,29 @@
            "help_text":"コンソールにどんな操作をさせるのか"
          }
        ],
-       "hint_text": "画面",
-       "research_help_words":["c 二次元配列",""]
+       "irregular_matches": [],
+       "hint_text": "仕様Xを実現する機能",
+       "research_help_words":["c コンソール　クリア"],
+       "move_help_text":"画面のクリアはターンの終わりに行い、そのターンの表示を消しましょう",
+       "assist_text": "特殊なメソッドを使用し、コンソールに命令します。プログラムを実行するOSがWindowsかLinuxかどうかで命令が変わります。Repl.itの場合はLinux用の命令を使用してください"
+     },
+     {
+       "element_id":12,
+       "system_name":"break",
+       "category":10,
+       "priority":2,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["ループ"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "",
+       "research_help_words":["c ループ　抜ける"],
+       "move_help_text":"ループを抜ける判定は勝敗判定の後です",
+       "assist_text": "勝者がいた場合はループを抜けます"
      }
    ]
 }

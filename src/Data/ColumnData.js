@@ -5,12 +5,19 @@ class ColumnData{
         this.system_name=json_obj.system_name;
         this.category=json_obj.category;
         this.priority=json_obj.priority;
+        this.depend_element=json_obj.depend_element;
         this.matches=[];
         for (let i=0;i<json_obj.matches.length;i++){
             this.matches.push(new MatchData(json_obj.matches[i].similar_words,json_obj.matches[i].help_text))
         }
+        this.irregular_matches=[];
+        for (let i=0;i<json_obj.irregular_matches.length;i++){
+            this.matches.push(new MatchData(json_obj.irregular_matches[i].similar_words,json_obj.matches[i].help_text))
+        }
         this.hint_text=json_obj.hint_text;
         this.research_help_words=json_obj.research_help_words;
+        this.move_help_text=json_obj.move_help_text;
+        this.assist_text=json_obj.assist_text;
     }
 }
 

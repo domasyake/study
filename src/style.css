@@ -46,7 +46,6 @@ header{
     width: 85%;
 }
 #chat_image:active {
-    padding-top: 6px;
     padding-bottom: 4px;
     border: 0px;
 }
@@ -79,19 +78,19 @@ header{
     background-size: 100% 100%;
 }
 
-#input_submit{
+.submit{
     border: 0px;
     width:204px;
 
     background: url("../img/submt_button_1.png") left top no-repeat;
     background-size: 100% 100%;
 }
-#input_submit:hover{
+.submit:hover{
     cursor: pointer;
     opacity:0.7;
 }
 
-#input_submit:active{
+.submit:active{
     padding-top:6px;
     padding-bottom:4px;
 
@@ -101,11 +100,13 @@ header{
 #hint_area{
     display: flex;
     height: 50px;
+    align-items: center;
 }
 
 #hint_button{
     border: 0px;
     width:100px;
+    height: 40px;
 
     background: url("../img/submt_button_1.png") left top no-repeat;
     background-size: 100% 100%;
@@ -118,13 +119,10 @@ header{
 #hint_button:active{
     padding-top:6px;
     padding-bottom:4px;
-
 }
 
 #hint_text{
-    height: 100%;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin:10px;
 }
 /*=========================Function Cards=========================*/
 #function_card_root{
@@ -216,6 +214,8 @@ header{
 .mv_child_root{
     padding-left: 30px;
     padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
     min-height: 20px;
     height: auto;
 }
@@ -227,7 +227,7 @@ header{
 
 #moveable_decide{
     height: 100%;
-    width: 50%;
+    width: 40%;
 }
 
 .moveable_decide_holder{

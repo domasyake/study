@@ -28,4 +28,17 @@ class MoveAbleListHolderUnit
     CheckIsMy(decide_holder){
         return this.decide_holder===decide_holder;
     }
+
+    GetChild(){
+        let res=[];
+        for (let i=0;i<this.my_child_cards.length;i++){
+            let card=this.my_child_cards[i];
+            res.push(card);
+            console.log("card:"+card.data.category)
+            if(card.holder!==null){
+                res=res.concat(card.holder.GetChild());
+            }
+        }
+        return res;
+    }
 }

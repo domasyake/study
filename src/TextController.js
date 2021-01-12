@@ -1,21 +1,26 @@
 class TextController {
 
     constructor(input_box,submit_button,display_area,chat_area,
-                split_controller,card_controller,media_controller) {
+                split_controller,card_controller,media_controller,moveable_controller) {
         this.input_box=input_box;
         this.chat_area=chat_area;
         this.split_controller=split_controller;
         this.card_controller=card_controller;
         this.media_controller=media_controller;
+        this.moveable_contrller=moveable_controller;
 
         this.current_data=[];
         this.on_area_click=new Rx.Subject();
         this.on_input_submit=new Rx.Subject();
+        let on_check_submit=new Rx.Subject();
+        this.on_check_submit=on_check_submit;
 
         Rx.Observable.fromEvent(submit_button,"click")
             .subscribe(()=>this.SubmitNextButton());
         Rx.Observable.fromEvent(display_area,"click")
             .subscribe(()=>this.ClickArea());
+        Rx.Observable.fromEvent(document.getElementById("check_submit"),"click")
+            .subscribe(()=>on_check_submit.onNext());
     }
 
     async LoadData(file_name){
@@ -34,7 +39,7 @@ class TextController {
                     this.setText(item[0]);
                     await this.on_area_click.first().toPromise();
                     break;
-                case 'i':
+                case 'input':
                     this.setText(item[0]);
                     await this.on_input_submit.first().toPromise();
                     temp_data.push(String(this.input_box.value));
@@ -48,7 +53,7 @@ class TextController {
                     this.setText(result_text)
                     await this.on_area_click.first().toPromise();
                     break;
-                case "ls":
+                case "loopSplit":
                     this.setText(item[0]);
                     const word=await this.getInput();
                     const res_text=this.split_controller.checkWord(word);
@@ -60,25 +65,36 @@ class TextController {
                         current_line--;
                     }
                     break;
-                case "clF":
+                case "clearFunction":
                     this.card_controller.SwitchDisplay(false);
                     this.setText(item[0]);
                     await this.on_area_click.first().toPromise();
                     break;
-                case "pl1":
+                case "playMovie1":
                     this.setText(item[0]);
                     await this.media_controller.PlayVideo("media/test.mp4");
                     await this.on_area_click.first().toPromise();
                     break;
-                case "v1":
+                case "picture1":
                     this.setText(item[0]);
                     this.media_controller.visibleImg("media/test.png");
                     await this.on_area_click.first().toPromise();
                     break;
-                case "iv1":
+                case "invPicture1":
                     this.setText(item[0]);
                     this.media_controller.invisibleImg();
                     await this.on_area_click.first().toPromise();
+                    break;
+                case "loopMove":
+                    this.setText(item[0]);
+                    await this.on_check_submit.first().toPromise();
+                    let res=this.moveable_contrller.CheckComplete();
+                    if(res===""){
+                    }else{
+                        this.setText(res);
+                        current_line--;
+                        await this.on_area_click.first().toPromise();
+                    }
                     break;
                 default:
                     break;
