@@ -10,10 +10,11 @@ async function InitOnDomLoad() {
         column.push(new ColumnData(column_json.data[i]))
     }
 
-    let save_data_manager=new SaveDataManager();
+    let debug_mode=true;
+    let save_data_manager=new SaveDataManager(debug_mode);
     save_data_manager.Load();
 
-    let card_controller = new FunctionCardController(document.getElementById("card_root"),save_data_manager);
+    let card_controller = new FunctionCardController(save_data_manager);
     let moveable_controller=new MoveAbleCardRootController();
     const split_controller=new SplitController(column_json.data,save_data_manager);
     let media_controller=new MediaController(document.getElementById("control_area"));
@@ -24,14 +25,11 @@ async function InitOnDomLoad() {
         split_controller
     );
     text_controller = new TextController(
-        document.getElementById("input_box"),
-        document.getElementById("input_submit"),
-        document.getElementById("chat_area"),
-        document.getElementById("chat_text"),
         split_controller,
-        card_controller,
         media_controller,
-        moveable_controller
+        moveable_controller,
+        hint_controller,
+        save_data_manager
     );
 
     await text_controller.LoadData("script/test.csv");

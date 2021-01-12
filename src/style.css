@@ -44,6 +44,7 @@ header{
 #chat_area{
     position: relative;
     width: 85%;
+
 }
 #chat_image:active {
     padding-bottom: 4px;
@@ -56,16 +57,34 @@ header{
     color: #ff0000;
     position: absolute;
     pointer-events: none;
-    top: 2%;
-    left: 2vw;
-    font-size: 3vh;
+    top: 0vw;
+    left: 0vw;
+    padding-left: 1vw;
+    font-size: 2vw;
 }
 #chat_image {
     width: 100%;
+}
+#chat_triangle{
+    pointer-events: none;
+    position: absolute;
+    width: 40px;
+    bottom: 3vw;
+    right: 4vw;
+    animation: move-y .5s infinite alternate ease-in-out;
 
+}
+@keyframes move-y {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(10px);
+    }
 }
 /*=========================Input Area=========================*/
 #input_area{
+    margin-top: 5px;
     display: flex;
     height: 50px;
 }
@@ -124,8 +143,38 @@ header{
 #hint_text{
     margin:10px;
 }
+
+/*=========================Switchable media=========================*/
+#switchable_media{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    width: 480px;
+}
+
+#sw_desc{
+    height: 360px;
+    width: 360px;
+    display: block;
+}
+
+#sw_video{
+    height: 360px;
+    display: none;
+}
+
+#sw_switcher{
+    margin-top: 10px;
+    height: 50px;
+}
+
 /*=========================Function Cards=========================*/
 #function_card_root{
+    display: flex;
+}
+#function_card_list{
+    margin-left: 10px;
     height: 100%;
     display: flex;
     flex-direction: column;

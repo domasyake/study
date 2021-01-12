@@ -1,17 +1,14 @@
 class SaveDataManager {
 
-    constructor() {
+    constructor(debug_mode) {
         this.save_data=null;
         this.on_update_data=new Rx.Subject();
+        this.debug_mode=debug_mode;
 
-        document.body.addEventListener('keydown',
-            event => {
-                if (event.key === 'v') {
-                    alert("消しﾏｧｽ");
-                    Cookies.remove('save_data');
-                    console.log("消しﾏｧｽ")
-                }
-            });
+        if(debug_mode){
+            Cookies.remove('save_data');
+            console.log("消しﾏｧｽ")
+        }
     }
 
     Load(){
@@ -19,7 +16,7 @@ class SaveDataManager {
         console.log(data)
         if(data===undefined){
             let list = []
-            this.save_data= new SaveData(1, 1, list);
+            this.save_data= new SaveData(1, 0, list);
             this.Save();
         }else{
             let json=JSON.parse(data);
@@ -43,7 +40,13 @@ class SaveDataManager {
         this.Save();
     }
 
+    pushCurrentLine(line){
+        this.save_data.current_line=line;
+        this.Save();
+    }
+
     Save(){
+        if(this.debug_mode)return
         console.log("セーブしマァス")
         Cookies.set("save_data",this.save_data.ToStr(), { expires: 365 });
     }

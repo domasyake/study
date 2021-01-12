@@ -1,12 +1,14 @@
 class MoveAbleCardRootController {
 
     constructor() {
+        this.moveable_root=document.getElementById("moveable_card_root");
         let list_loot=document.getElementById("moveable_list");
         this.list_root=list_loot;
         let my_holder=new MoveAbleListHolderUnit(document.getElementById("moveable_decide"));
         this.my_holder=my_holder;
         let holders=[my_holder];
 
+        this.SwitchDisplay(false);
         //マウス座標監視
         let mouse_pos={x:0,y:0};
         Rx.Observable.fromEvent(document, 'mousemove')
@@ -90,5 +92,8 @@ class MoveAbleCardRootController {
         return "";
     }
 
+    SwitchDisplay(flag){
+        this.moveable_root.style.display=flag?"flex":"none";
+    }
 
 }

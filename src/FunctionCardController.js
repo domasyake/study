@@ -1,6 +1,6 @@
 class FunctionCardController {
-    constructor(card_root,save_data_manager) {
-        this.card_root=card_root;
+    constructor(save_data_manager) {
+        this.card_root=document.getElementById("function_card_list");
         this.save_data_manager=save_data_manager;
         this.cards=[];
         this.delete_event=new Rx.Subject();
@@ -33,6 +33,6 @@ class FunctionCardController {
     }
 
     SwitchDisplay(flag){
-        this.card_root.style.display=flag;
+        this.card_root.style.display=flag?"flex":"none";
     }
 }

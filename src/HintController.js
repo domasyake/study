@@ -4,6 +4,8 @@ class HintController {
                 save_data_manager,
                 split_controller)
     {
+        this.hint_button=hint_button;
+        this.hint_text=hint_text;
         Rx.Observable.fromEvent(hint_button,"click")
             .subscribe(_=>{
 
@@ -15,13 +17,18 @@ class HintController {
                         break;
                 }
                 const hint=use.getHint();
-                console.log("aaa"+hint)
                 if(hint===""){
-                    hint_text.innerText="もうヒントがないよ";
+                    hint_text.innerText="もうヒントがありません";
                 }else{
                     hint_text.innerText=hint;
                 }
 
-            })
+            });
+        this.SwitchDisplay(false);
+    }
+
+    SwitchDisplay(flag){
+        this.hint_button.style.display=flag?"block":"none";
+        this.hint_text.style.display=flag?"block":"none";
     }
 }

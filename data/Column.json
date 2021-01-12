@@ -38,7 +38,12 @@
            "help_text":"データをどうするのか"
          }
        ],
-       "irregular_matches": [],
+       "irregular_matches": [
+         {
+           "similar_words": ["int","char","float"],
+           "help_text":"データの型はここでは考えないようにしましょう"
+         }
+       ],
        "hint_text": "マス目の情報を管理するにはどうすればいいか",
        "research_help_words":["c 二次元配列"],
        "move_help_text":"データの準備はループより前に行いましょう",
@@ -49,7 +54,7 @@
        "system_name":"main_loop",
        "category":2,
        "priority":3,
-       "child_category":[],
+       "child_category":[3,4,5,6,7,8,9,10],
        "matches":[
          {
            "similar_words": ["ループ"],
@@ -58,7 +63,7 @@
        ],
        "irregular_matches": [],
        "hint_text": "",
-       "research_help_words":["c for",""],
+       "research_help_words":["c for"],
        "move_help_text":"",
        "assist_text": "9回という回数が決まっているため、whileよりforのが良いです"
      },
@@ -70,7 +75,7 @@
        "child_category":[],
        "matches":[
          {
-           "similar_words": ["マス","","マス","マルバツ"],
+           "similar_words": ["マス目","マス","マルバツ"],
            "help_text":"何を表示するのか"
          },
          {
@@ -141,7 +146,7 @@
            "help_text":""
          },
          {
-           "similar_words": ["つける","付ける","入れる",""],
+           "similar_words": ["つける","付ける","入れる"],
            "help_text":""
          }
        ],
@@ -190,7 +195,7 @@
            "help_text":""
          },
          {
-           "similar_words": ["つける","付ける","入れる",""],
+           "similar_words": ["つける","付ける","入れる"],
            "help_text":""
          }
        ],
@@ -208,7 +213,7 @@
        "child_category":[],
        "matches":[
          {
-           "similar_words": ["負","かちまけ","勝"],
+           "similar_words": ["かちまけ","勝敗"],
            "help_text":"何を判定するのか"
          },
          {
@@ -234,16 +239,16 @@
            "help_text":"いつこの処理をするのか"
          },
          {
-           "similar_words": ["スクリーン","画面","コンソール"],
+           "similar_words": ["スクリーン","画面","コンソール","文字","テキスト"],
            "help_text":""
          },
          {
            "similar_words": ["削除","消去","消す"],
-           "help_text":"コンソールにどんな操作をさせるのか"
+           "help_text":"どんな操作をするのか"
          }
        ],
        "irregular_matches": [],
-       "hint_text": "仕様Xを実現する機能",
+       "hint_text": "そのターンの文字のみを表示するにはどうすればいいか",
        "research_help_words":["c コンソール　クリア"],
        "move_help_text":"画面のクリアはターンの終わりに行い、そのターンの表示を消しましょう",
        "assist_text": "特殊なメソッドを使用し、コンソールに命令します。プログラムを実行するOSがWindowsかLinuxかどうかで命令が変わります。Repl.itの場合はLinux用の命令を使用してください"
@@ -283,6 +288,24 @@
        "research_help_words":["c if"],
        "move_help_text":"プレイヤーの切替はターンの終わりに行いましょう",
        "assist_text": "ifを2つにせず、1つのif elseで判定と切替を行いましょう"
+     },
+     {
+       "element_id":14,
+       "system_name":"result",
+       "category":11,
+       "priority":2,
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["結果"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "",
+       "research_help_words":["c 二重ループ"],
+       "move_help_text":"結果表示はループの外で行います",
+       "assist_text": "勝者の情報を保存する変数をループの前に準備しましょう"
      }
    ]
 }

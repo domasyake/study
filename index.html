@@ -24,6 +24,7 @@
     <script src="src/MoveAbleCardRootController.js"></script>
     <script src="src/MoveAbleListControlUnit.js"></script>
     <script src="src/MoveableCard.js"></script>
+    <script src="src/SwitchableMedia.js"></script>
     <script src="src/main.js"></script>
 </head>
 <body>
@@ -31,15 +32,23 @@
         <div id="step">Step 1/3</div>
     </header>
     <div id="control_area" class="noselect">
-        <!--<div id="function_card_root">
+        <div id="function_card_root">
+            <div id="switchable_media">
+                <img id="sw_desc" src="media/desc.png">
+                <video id="sw_video" src="media/play.mp4" controls="true"></video>
+                <input type="submit" id="sw_switcher" class="submit" value="動画"/>
+            </div>
+            <div id="function_card_list">
+                <!--
+                       <div class="function_card">
+                           <img class="function_card_img" src="img/function_card.png">
+                           <img class="function_card_delete_button" src="img/function_card_delete_button.png">
+                           <p class="function_card_text">てきすとてきすとてきすとてきすとてきすと</p>
+                       </div>
+                -->
+            </div>
 
-       <div class="function_card">
-           <img class="function_card_img" src="img/function_card.png">
-           <img class="function_card_delete_button" src="img/function_card_delete_button.png">
-           <p class="function_card_text">てきすとてきすとてきすとてきすとてきすと</p>
-       </div>
-
-        </div>    -->
+        </div>
         <div id="moveable_card_root">
             <div id="moveable_decide" class="moveable_decide_holder">
 <!--
@@ -84,6 +93,7 @@
         <div id="chat_area">
             <img id="chat_image" src="img/chat_area.png">
             <p id="chat_text">ここにかいわ</p>
+            <img id="chat_triangle" src="img/triangle.png">
         </div>
         <img id="char" src="img/char_1.png">
     </div>
