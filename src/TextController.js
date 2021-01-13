@@ -54,12 +54,13 @@ class TextController {
                     this.hint_controller.SwitchDisplay(true);
                     this.setText(item[0]);
                     const word=await this.getInput();
-                    const res_text=this.split_controller.checkWord(word);
-                    this.resetInput();
-                    this.setText(res_text);
-
+                    const result=this.split_controller.checkWord(word);
+                    this.setText(result.mess);
+                    if(result.success){
+                        this.resetInput();
+                    }
+                    this.input_submit.style.display="none";
                     await this.WaitClick();
-
                     if(!this.split_controller.checkComplete()){
                         current_line--;
                     }
@@ -74,7 +75,6 @@ class TextController {
                     this.setText(item[0]);
                     await this.media_controller.PlayVideo("media/play.mp4");
                     await this.WaitClick();
-
                     break;
                 case "picture1":
                     this.setText(item[0]);
@@ -84,12 +84,22 @@ class TextController {
                     break;
                 case "invPicture1":
                     this.setText(item[0]);
+                    await this.WaitClick();
                     this.media_controller.invisibleImg();
+                    break;
+                case "picture2":
+                    this.setText(item[0]);
+                    this.media_controller.visibleImg("media/step.png");
                     await this.WaitClick();
 
                     break;
+                case "invPicture2":
+                    this.setText(item[0]);
+                    await this.WaitClick();
+                    this.media_controller.invisibleImg();
+                    break;
                 case "loopMove":
-                    this.check_submit.style.display="block";
+                    this.check_submit.style.display="none";
                     this.setText(item[0]);
                     await this.on_check_submit.first().toPromise();
                     let res=this.moveable_contrller.CheckComplete();
@@ -98,7 +108,7 @@ class TextController {
                         this.setText(res);
                         current_line--;
                         await this.WaitClick();
-
+                        this.check_submit.style.display="block";
                     }
                     break;
                 case "endSplit":
@@ -108,7 +118,31 @@ class TextController {
                     this.hint_controller.SwitchDisplay(false);
                     break;
                 case "endMove":
+                    this.setText(item[0]);
                     this.check_submit.style.display="none";
+                    await this.WaitClick();
+                    break;
+                case "prepareSplit":
+                    this.setText(item[0]);
+                    this.split_controller.SwitchDisplay(true);
+                    await this.WaitClick();
+                    break;
+                case "splitLoop":
+                    this.setText(item[0]);
+                    this.split_controller.checkWord("9回ループさせる");
+                    this.split_controller.checkWord("勝者が出たらループを終わらせる");
+                    await this.WaitClick();
+                    break;
+                case "splitTurn":
+                    this.setText(item[0]);
+                    this.split_controller.checkWord("ターンのプレイヤーを保存する変数を用意する");
+                    this.split_controller.checkWord("ターンの終わりにプレイヤーを切り替える");
+                    await this.WaitClick();
+                    break;
+                case "prepareMove":
+                    this.setText(item[0]);
+                    this.moveable_contrller.SwitchDisplay(true);
+                    await this.WaitClick();
                     break;
                 default:
                     break;

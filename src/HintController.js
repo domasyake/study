@@ -10,12 +10,12 @@ class HintController {
             .subscribe(_=>{
 
                 let step=save_data_manager.save_data.current_step;
-                let use=null;
-                switch (step) {
-                    case 1:
-                        use=split_controller;
-                        break;
-                }
+                let use=split_controller;
+                // switch (step) {
+                //     case 2:
+                //         use=split_controller;
+                //         break;
+                //}
                 const hint=use.getHint();
                 if(hint===""){
                     hint_text.innerText="もうヒントがありません";

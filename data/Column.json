@@ -8,7 +8,15 @@
        "child_category":[],
        "matches":[
          {
-           "similar_words": ["ターン"],
+           "similar_words": ["ターンの"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["プレイヤー"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["保存する"],
            "help_text":""
          }
        ],
@@ -30,11 +38,11 @@
            "help_text":"何に保存するのか"
          },
          {
-           "similar_words": ["3*3","二次元配列","3かける3"],
+           "similar_words": ["3*3","二次元配列","3かける3","配列","データ"],
            "help_text":"どういうデータなのか"
          },
          {
-           "similar_words": ["保存","保持","セーブ"],
+           "similar_words": ["保存","保持","セーブ","準備","変数"],
            "help_text":"データをどうするのか"
          }
        ],
@@ -56,6 +64,10 @@
        "priority":3,
        "child_category":[3,4,5,6,7,8,9,10],
        "matches":[
+         {
+           "similar_words": ["9回"],
+           "help_text":""
+         },
          {
            "similar_words": ["ループ"],
            "help_text":""
@@ -146,14 +158,18 @@
            "help_text":""
          },
          {
-           "similar_words": ["つける","付ける","入れる"],
-           "help_text":""
+           "similar_words": ["入れる","配列に","データに","配列へ","データへ"],
+           "help_text":"○をどうするのか。"
          }
        ],
        "irregular_matches": [
          {
            "similar_words": ["受け取","受取","入力する","入力させる"],
            "help_text":"この機能と入力は分けた方がよい"
+         },
+         {
+           "similar_words": ["付ける","つける","描画する","表示する"],
+           "help_text":"○を表示するのは別の機能です。ここではデータをどうするのか考える"
          }
        ],
        "hint_text": "入力を基に何をするのか",
@@ -243,7 +259,7 @@
            "help_text":""
          },
          {
-           "similar_words": ["削除","消去","消す"],
+           "similar_words": ["削除","消去","消す","クリア"],
            "help_text":"どんな操作をするのか"
          }
        ],
@@ -262,6 +278,14 @@
        "matches":[
          {
            "similar_words": ["ループ"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["勝者が"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["出たら"],
            "help_text":""
          }
        ],

@@ -1,6 +1,7 @@
 class FunctionCardController {
     constructor(save_data_manager) {
-        this.card_root=document.getElementById("function_card_list");
+        let card_root=document.getElementById("function_card_list");
+        this.card_root=card_root;
         this.save_data_manager=save_data_manager;
         this.cards=[];
         this.delete_event=new Rx.Subject();
@@ -18,7 +19,7 @@ class FunctionCardController {
             .subscribe(_=>{
                 for (let i=0;i<this.save_data_manager.save_data.table.length;i++){
                     const item=save_data_manager.save_data.table[i];
-                    if(!this.cards.some(n=>n.data.unique_id===item.unique_id)){
+                    if(!this.cards.some(n=>n.data.element_id===item.element_id)){
                         const new_card=new FunctionCard(card_root,item);
                         new_card.delete_event
                             .subscribe(val=>this.delete_event.onNext(val))

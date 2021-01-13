@@ -10,7 +10,7 @@ async function InitOnDomLoad() {
         column.push(new ColumnData(column_json.data[i]))
     }
 
-    let debug_mode=true;
+    let debug_mode=false;
     let save_data_manager=new SaveDataManager(debug_mode);
     save_data_manager.Load();
 
@@ -32,9 +32,9 @@ async function InitOnDomLoad() {
         save_data_manager
     );
 
-    await text_controller.LoadData("script/test.csv");
-    text_controller.StartChat();
+    //await text_controller.LoadData("script/test.csv");
+    //text_controller.StartChat();
 
-    // let step_manager=new StepManager(text_controller,save_data_manager);
-    // step_manager.StartStep();
+    let step_manager=new StepManager(text_controller,save_data_manager);
+    step_manager.StartStep();
 }
