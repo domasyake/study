@@ -17,11 +17,14 @@ class SplitController{
         this.split_data=await getJsonData("data/SplitData.json");
     }
 
-    checkWord(word){
+    checkWord(word,force=false){
         console.log("入力:"+word);
 
         let targets=this.column
             .filter(n=>n.matches.some(m=>m.similar_words.some(k=>word.includes(k))));
+        if(!force){
+            targets=targets.filter(n=>n.priority>1);
+        }
         let match_num=0;
         let target=null;
         for (let i=0;i<targets.length;i++){
@@ -66,7 +69,11 @@ class SplitController{
             }else{
                 let res=this.split_data.near;
                 console.log("res"+res)
-                help_texts.filter(n=>n!=="").forEach(n=>res+="\n・"+n);
+                if(help_texts.length>2){
+                    help_texts.splice(0,1).filter(n=>n!=="").forEach(n=>res+="\n・"+n);
+                }else{
+                    help_texts.filter(n=>n!=="").forEach(n=>res+="\n・"+n);
+                }
                 return {mess:res,success:false};
             }
         } else {

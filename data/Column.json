@@ -5,6 +5,7 @@
        "system_name":"prepare_turn_player",
        "category":1,
        "priority":3,
+       "parent_element": [-1],
        "child_category":[],
        "matches":[
          {
@@ -31,6 +32,7 @@
        "system_name":"prepare_field",
        "category":1,
        "priority":3,
+       "parent_element": [-1],
        "child_category":[],
        "matches":[
          {
@@ -62,6 +64,7 @@
        "system_name":"main_loop",
        "category":2,
        "priority":3,
+       "parent_element": [-1],
        "child_category":[3,4,5,6,7,8,9,10],
        "matches":[
          {
@@ -84,6 +87,7 @@
        "system_name":"display_field",
        "category":3,
        "priority":3,
+       "parent_element": [3],
        "child_category":[],
        "matches":[
          {
@@ -96,7 +100,7 @@
          }
        ],
        "irregular_matches": [],
-       "hint_text": "画面には何を表示するのか",
+       "hint_text": "画面にはどんな処理をするのか",
        "research_help_words":["c 二次元配列","c 二重ループ"],
        "move_help_text":"描画はループの中の最初に行いましょう",
        "assist_text": "マス目は二次元配列なので、二重のforを使いましょう"
@@ -105,11 +109,12 @@
        "element_id":5,
        "system_name":"if_player",
        "category":4,
-       "priority":2,
+       "priority":1,
+       "parent_element": [3],
        "child_category":[5,6],
        "matches":[
          {
-           "similar_words": ["プレイヤー"],
+           "similar_words": ["ユーザーのターン"],
            "help_text":""
          }
        ],
@@ -124,6 +129,7 @@
        "system_name":"input",
        "category":5,
        "priority":3,
+       "parent_element":[3,5],
        "child_category":[],
        "matches":[
          {
@@ -151,6 +157,7 @@
        "system_name":"user_behaviour",
        "category":6,
        "priority":3,
+       "parent_element": [3,5],
        "child_category":[],
        "matches":[
          {
@@ -159,7 +166,7 @@
          },
          {
            "similar_words": ["入れる","配列に","データに","配列へ","データへ"],
-           "help_text":"○をどうするのか。"
+           "help_text":"○をデータとしてどうするか考えましょう"
          }
        ],
        "irregular_matches": [
@@ -169,7 +176,7 @@
          },
          {
            "similar_words": ["付ける","つける","描画する","表示する"],
-           "help_text":"○を表示するのは別の機能です。ここではデータをどうするのか考える"
+           "help_text":"○を表示するのは別の機能です。ここではデータをどうするのか考えましょう"
          }
        ],
        "hint_text": "入力を基に何をするのか",
@@ -181,11 +188,12 @@
        "element_id":8,
        "system_name":"if_enemy",
        "category":7,
-       "priority":2,
+       "priority":1,
+       "parent_element": [3],
        "child_category":[8],
        "matches":[
          {
-           "similar_words": ["敵"],
+           "similar_words": ["敵のターン"],
            "help_text":""
          }
        ],
@@ -200,6 +208,7 @@
        "system_name":"enemy_behaviour",
        "category":8,
        "priority":3,
+       "parent_element":[3,8],
        "child_category":[],
        "matches":[
          {
@@ -211,11 +220,17 @@
            "help_text":""
          },
          {
-           "similar_words": ["つける","付ける","入れる"],
-           "help_text":""
+           "similar_words": ["入れる","配列に","データに","配列へ","データへ"],
+           "help_text":"✕をデータとしてどうするか考えましょう"
          }
        ],
-       "irregular_matches": [],
+       "irregular_matches":
+       [
+         {
+           "similar_words": ["付ける","つける","描画する","表示する"],
+           "help_text":"✕を表示するのは別の機能です。ここではデータをどうするのか考えましょう"
+         }
+       ],
        "hint_text": "敵の行動について",
        "research_help_words":["c 二重ループ","c 乱数","c 無限ループ"],
        "move_help_text":"敵の行動は敵のターンにのみ行いましょう",
@@ -226,6 +241,7 @@
        "system_name":"judge",
        "category":9,
        "priority":3,
+       "parent_element": [3],
        "child_category":[],
        "matches":[
          {
@@ -240,7 +256,7 @@
        "irregular_matches": [],
        "hint_text": "ターンの終わりにする処理",
        "research_help_words":["c 二重ループ"],
-       "move_help_text":"勝敗判定はユーザーか敵の行動が終わってからです",
+       "move_help_text":"勝敗判定はプレイヤーの行動が終わってからです",
        "assist_text": "垂直水平方向と斜め方向で判定します。垂直水平は二重ループを使用し順番に、斜めは配列の中央(1,1)と(0,0),(2,2)又は(2,0),(0,2)を調べましょう、"
      },
      {
@@ -248,6 +264,7 @@
        "system_name":"clear",
        "category":10,
        "priority":3,
+       "parent_element": [3],
        "child_category":[],
        "matches":[
          {
@@ -274,6 +291,7 @@
        "system_name":"break",
        "category":10,
        "priority":2,
+       "parent_element": [3],
        "child_category":[],
        "matches":[
          {
@@ -300,10 +318,19 @@
        "system_name":"switch_player",
        "category":10,
        "priority":2,
+       "parent_element": [3],
        "child_category":[],
        "matches":[
          {
-           "similar_words": ["ターン"],
+           "similar_words": ["終わりに"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["プレイヤーを"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["切り替える"],
            "help_text":""
          }
        ],
@@ -318,6 +345,7 @@
        "system_name":"result",
        "category":11,
        "priority":2,
+       "parent_element": [-1],
        "child_category":[],
        "matches":[
          {

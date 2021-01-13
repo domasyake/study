@@ -1,7 +1,16 @@
 class MoveAbleCardRootController {
 
-    constructor() {
+    constructor(save_data_manager,column) {
+        this.initialized=false;
+        this.save_data_manager=save_data_manager;
+        this.column=column;
         this.moveable_root=document.getElementById("moveable_card_root");
+        this.SwitchDisplay(false)
+    }
+
+    Prepare(){
+        if(this.initialized)return;
+        this.initialized=true;
         let list_loot=document.getElementById("moveable_list");
         this.list_root=list_loot;
         let my_holder=new MoveAbleListHolderUnit(document.getElementById("moveable_decide"));
@@ -14,25 +23,24 @@ class MoveAbleCardRootController {
         Rx.Observable.fromEvent(document, 'mousemove')
             .subscribe(val=>{
                 mouse_pos.x=val.pageX;
-                mouse_pos.y=val.pageY+10;
+                mouse_pos.y=val.pageY-15;
             });
 
         //カード処理
         let move_able=new MoveAbleProperty();
         this.move_able=move_able;
-        var cards=[
-            new MoveableCard(this.list_root,{user_saved_name:"a",element_id:0,category:7,depend_element:[]},move_able),
-            new MoveableCard(this.list_root,{user_saved_name:"b",element_id:0,category:3,depend_element:[]},move_able),
-            new MoveableCard(this.list_root,{user_saved_name:"c",element_id:0,category:4,depend_element:[]},move_able),
-            new MoveableCard(this.list_root,{user_saved_name:"d",element_id:1,category:0,depend_element:[]},move_able),
-            new MoveableCard(this.list_root,{user_saved_name:"e",element_id:2,category:5,depend_element:[]},move_able),
-            new MoveableCard(this.list_root,{user_saved_name:"f",element_id:2,category:6,depend_element:[]},move_able),
-        ];
+        let cards=[];
+        for (let i=0;i<this.save_data_manager.save_data.table.length;i++){
+            let user_data=this.save_data_manager.save_data.table[i];
+            let data=this.column.find(n=>n.element_id===user_data.element_id);
+            console.log(this.column[0].element_id);
+            cards.push(new MoveableCard(this.list_root,user_data.user_saved_name,data,move_able));
+        }
 
         //特殊カードの処理
-        let loop_card=cards.filter(n=>n.element_id===1)[0];
+        let loop_card=cards.filter(n=>n.data.child_category.length>3)[0];
         my_holder.AddChild(loop_card);
-        let if_cards=cards.filter(n=>n.element_id===2);
+        let if_cards=cards.filter(n=>n.data.child_category.length>0&&n.data.child_category.length<3);
         for (let i=0;i<if_cards.length;i++){
             loop_card.holder.AddChild(if_cards[i]);
         }
@@ -43,15 +51,15 @@ class MoveAbleCardRootController {
         for (let i=0;i<cards.length;i++){
             cards[i].onMoveEnd
                 .subscribe(_=>{
+                    let pos=cards[i].GetMyPositionY();
                     var elm=document.elementsFromPoint(mouse_pos.x,mouse_pos.y);
                     for (let j=0;j<elm.length;j++){
                         if(elm[j].className.includes("moveable_decide_holder")){
-                            console.log("見っけたぜ"+elm[j].id);
                             //一旦全部のHolderから削除
                             for(let w=0;w<holders.length;w++){
                                 holders[w].RemoveChild(cards[i]);
                                 if(holders[w].CheckIsMy(elm[j])){
-                                    holders[w].AddChild(cards[i]);
+                                    holders[w].AddChild(cards[i],mouse_pos.y);
                                     cards[i].ReSetPosition();
                                 }
                             }
@@ -64,6 +72,7 @@ class MoveAbleCardRootController {
                     }
                     list_loot.appendChild(cards[i].card_root)
 
+                    cards[i].SetNewRoot(list_loot);
                     cards[i].ReSetPosition();
                     cards[i].SetOrder(0);
                     move_able.SetMoveAble(true);
@@ -76,16 +85,29 @@ class MoveAbleCardRootController {
             console.log("リストにまだ残ってる:"+this.list_root.childNodes.length);
             return "リストにまだある";
         }
-
+        if(!this.my_holder.my_child_cards.every(n=>n.data.parent_element.some(m=>m==-1))){
+            return "配置が間違っています。ループの前後を確認してください";
+        }
         let cards=this.my_holder.GetChild();
         let checker=0;
         for (let j=0;j<cards.length;j++){
             let card=cards[j];
             console.log("card:"+j+",category:"+card.data.category)
-            if(checker<=card.data.category){
+            if(card.data.child_category.length>0&&card.holder!==null){
+                let child=card.holder.GetChild();
+                if(!child.every(n=>n.data.parent_element.some(m=>m===card.data.element_id))||
+                child.some(n=>n.data.parent_element.some(m=>m===-1)))
+                {
+                    return "配置が間違っています。分岐の部分や、ループの前後を確認してください";
+                }
+            }
+            if(checker+1===card.data.category||checker===card.data.category){
                 checker=card.data.category;
             }else{
-                return "順番がおかしい";
+                let text=card.data.move_help_text;
+                if(text!==""){
+                    return "順番が間違っています。以下のヒントを基に並べなおしてみてください。\n・"+text;
+                }
             }
         }
         this.move_able.SetMoveAble(false);

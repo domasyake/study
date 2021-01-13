@@ -13,7 +13,7 @@ class FunctionCard {
         img.src="img/function_card.png";
         this.card_root.appendChild(img);
 
-        let non_delete=[1,3,5,12];
+        let non_delete=[1,3,12,13];
         if(!non_delete.includes(data.element_id)){
             let delete_button=document.createElement("img");
             delete_button.className="function_card_delete_button";

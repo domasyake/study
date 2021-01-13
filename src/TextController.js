@@ -99,9 +99,12 @@ class TextController {
                     this.media_controller.invisibleImg();
                     break;
                 case "loopMove":
-                    this.check_submit.style.display="none";
+                    this.moveable_contrller.Prepare();
+                    this.moveable_contrller.SwitchDisplay(true);
+                    this.check_submit.style.display="block";
                     this.setText(item[0]);
                     await this.on_check_submit.first().toPromise();
+                    this.check_submit.style.display="none";
                     let res=this.moveable_contrller.CheckComplete();
                     if(res===""){
                     }else{
@@ -141,6 +144,9 @@ class TextController {
                     break;
                 case "prepareMove":
                     this.setText(item[0]);
+                    this.split_controller.checkWord("ユーザーのターン",true);
+                    this.split_controller.checkWord("敵のターン",true);
+                    this.moveable_contrller.Prepare();
                     this.moveable_contrller.SwitchDisplay(true);
                     await this.WaitClick();
                     break;

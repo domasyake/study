@@ -1,8 +1,10 @@
 class MoveableCard{
 
-    constructor(list_root,data,move_able) {
-        let value=data.user_saved_name;
+    constructor(list_root,user_saved_name,data,move_able) {
+        let value=user_saved_name;
         var root=document.createElement("div");
+        console.log("category:"+data.category)
+        this.current_root=list_root;
         this.card_root=root;
         this.data=data;
         this.holder=null;
@@ -25,7 +27,7 @@ class MoveableCard{
         list_root.appendChild(this.card_root);
 
         //Holder処理
-        if(data.element_id===1||data.element_id===2){
+        if(data.child_category.length>0){
             let pin=document.createElement("img");
             pin.className="moveable_pin";
             pin.src="img/move_able_pin.png";
@@ -42,15 +44,17 @@ class MoveableCard{
 
         //移動処理
         let styles=getComputedStyle(this.card_root);
-        let mouseup_events = Rx.Observable.fromEvent(this.card_root, 'mouseup');
+        let mouseup_events = Rx.Observable.fromEvent(document, 'mouseup');
         let mousemove_events = Rx.Observable.fromEvent(document, 'mousemove');
         let mousedown_events = Rx.Observable.fromEvent(this.card_root, 'mousedown');
 
         // mousedown_events.subscribe(_=>console.log("移動開始"+data.user_saved_name));
         // mouseup_events.subscribe(_=>console.log("移動終了"+data.user_saved_name));
+        let in_move=false;
         let source = mousedown_events
             .filter(_=>move_able.move_able)
             .flatMap(function(event) {
+                in_move=true;
                 move_able.SetMoveAble(false);
                 var start_left, start_pageX, start_pageY, start_top;
                 start_pageX = event.pageX;
@@ -67,8 +71,9 @@ class MoveableCard{
             }).takeUntil(mouseup_events);
         });
 
-        mouseup_events.subscribe(function() {
+        mouseup_events.filter(_=>in_move).subscribe(function() {
             on_move_end.onNext();
+            in_move=false;
             root.classList.remove('mv_hovering');
         });
 
@@ -93,6 +98,10 @@ class MoveableCard{
 
     SetOrder(order){
         this.card_root.style.order=order;
+    }
+
+    SetNewRoot(new_root){
+        this.current_root=new_root;
     }
 }
 

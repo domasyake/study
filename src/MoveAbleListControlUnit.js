@@ -6,15 +6,20 @@ class MoveAbleListHolderUnit
         this.my_child_cards=[];
     }
 
-    AddChild(child){
-        this.decide_holder.appendChild(child.card_root);
-        this.my_child_cards.push(child)
+    AddChild(child,mouse_pos){
+
+        this.my_child_cards.push(child);
+        child.SetNewRoot(this.decide_holder);
 
         this.my_child_cards=this.my_child_cards.sort((n,m)=>{
-            if(n.GetMyPositionY()<m.GetMyPositionY())return -1;
-            if(n.GetMyPositionY()>m.GetMyPositionY())return 1;
+            let n_pos=n.GetMyPositionY();
+            let m_pos=m.GetMyPositionY();
+
+            if(n_pos<m_pos)return -1;
+            if(n_pos>m_pos)return 1;
             return 0;
         })
+        this.decide_holder.appendChild(child.card_root);
 
         for (let i=0;i<this.my_child_cards.length;i++){
             this.my_child_cards[i].SetOrder(i);
@@ -34,7 +39,6 @@ class MoveAbleListHolderUnit
         for (let i=0;i<this.my_child_cards.length;i++){
             let card=this.my_child_cards[i];
             res.push(card);
-            console.log("card:"+card.data.category)
             if(card.holder!==null){
                 res=res.concat(card.holder.GetChild());
             }

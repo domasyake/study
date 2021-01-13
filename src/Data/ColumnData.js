@@ -5,7 +5,7 @@ class ColumnData{
         this.system_name=json_obj.system_name;
         this.category=json_obj.category;
         this.priority=json_obj.priority;
-        this.depend_element=json_obj.depend_element;
+        this.child_category=json_obj.child_category;
         this.matches=[];
         for (let i=0;i<json_obj.matches.length;i++){
             this.matches.push(new MatchData(json_obj.matches[i].similar_words,json_obj.matches[i].help_text))
