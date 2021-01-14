@@ -20,7 +20,8 @@ class SaveDataManager {
             this.Save();
         }else{
             let json=JSON.parse(data);
-            this.save_data=new SaveData(json.current_step,json.current_line,json.tables);
+            this.save_data=new SaveData(json.current_step,json.current_line,json.tables,json.order);
+            this.Save()
         }
     }
 

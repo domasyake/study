@@ -3,7 +3,6 @@ class MoveableCard{
     constructor(list_root,user_saved_name,data,move_able) {
         let value=user_saved_name;
         var root=document.createElement("div");
-        console.log("category:"+data.category)
         this.current_root=list_root;
         this.card_root=root;
         this.data=data;

@@ -1,6 +1,7 @@
 class TextController {
 
-    constructor(split_controller,media_controller,moveable_controller,hint_controller,save_data_manager) {
+    constructor(split_controller,media_controller,moveable_controller,
+                hint_controller,save_data_manager,assist_controller) {
         this.input_box=document.getElementById("input_box");
         this.chat_text=document.getElementById("chat_text");
         this.input_submit=document.getElementById("input_submit");
@@ -11,6 +12,7 @@ class TextController {
         this.moveable_contrller=moveable_controller;
         this.hint_controller=hint_controller;
         this.save_data_manager=save_data_manager;
+        this.assist_controller=assist_controller;
 
         this.SwitchTriAngle(false);
         this.input_box.style.display="none";
@@ -148,6 +150,12 @@ class TextController {
                     this.split_controller.checkWord("敵のターン",true);
                     this.moveable_contrller.Prepare();
                     this.moveable_contrller.SwitchDisplay(true);
+                    await this.WaitClick();
+                    break;
+                case "prepareAssist":
+                    this.setText(item[0]);
+                    this.assist_controller.Prepare();
+                    this.assist_controller.SwitchDisplay(true);
                     await this.WaitClick();
                     break;
                 default:

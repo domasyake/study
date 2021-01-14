@@ -17,6 +17,7 @@ async function InitOnDomLoad() {
     let card_controller = new FunctionCardController(save_data_manager);
     let moveable_controller=new MoveAbleCardRootController(save_data_manager,column_json.data);
     const split_controller=new SplitController(column_json.data,save_data_manager);
+    let assist_controller=new AssistCardController(column_json.data,save_data_manager);
     let media_controller=new MediaController(document.getElementById("control_area"));
     let hint_controller=new HintController(
         document.getElementById("hint_button"),
@@ -29,7 +30,8 @@ async function InitOnDomLoad() {
         media_controller,
         moveable_controller,
         hint_controller,
-        save_data_manager
+        save_data_manager,
+        assist_controller
     );
 
     //await text_controller.LoadData("script/test.csv");

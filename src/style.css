@@ -231,11 +231,14 @@ header{
 
 /*=========================Assist Cards=========================*/
 .assist_card{
+    margin-top: 10px;
     position: relative;
 }
 
 .assist_card_img{
-    height: 80px;
+    height: 50px;
+    width: 200px;
+    pointer-events: none;
 }
 .assist_card_delete_button{
     height: 20px;
@@ -245,11 +248,46 @@ header{
 }
 .assist_card_text{
     position: absolute;
-    top: 10px;
+    top: -5px;
+    height: 30px;
+    max-width: 150px;
     margin-right: 20px;
     margin-left: 30px;
+    pointer-events: none;
+    font-size: 10px;
 }
 
+.as_child_root{
+    padding-left: 30px;
+
+    height: auto;
+    width: auto;
+    margin-right: 50px;
+    overflow-y: auto;
+    overflow-x: visible;
+    border-color: darkgreen;
+    border-width: 1px 0px 1px 1px;
+    border-style: solid;
+}
+
+#assist_card_root{
+    display: flex;
+    height: 100%;
+}
+#assist_card_list{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+#assist_card_description{
+    height: 100%;
+    width: 50%;
+}
 /*=========================Assist Cards=========================*/
 #moveable_card_root{
     height: 100%;

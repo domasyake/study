@@ -33,7 +33,6 @@ class MoveAbleCardRootController {
         for (let i=0;i<this.save_data_manager.save_data.table.length;i++){
             let user_data=this.save_data_manager.save_data.table[i];
             let data=this.column.find(n=>n.element_id===user_data.element_id);
-            console.log(this.column[0].element_id);
             cards.push(new MoveableCard(this.list_root,user_data.user_saved_name,data,move_able));
         }
 
@@ -92,7 +91,7 @@ class MoveAbleCardRootController {
         let checker=0;
         for (let j=0;j<cards.length;j++){
             let card=cards[j];
-            console.log("card:"+j+",category:"+card.data.category)
+            console.log("el_id:"+card.data.element_id+",category:"+card.data.category)
             if(card.data.child_category.length>0&&card.holder!==null){
                 let child=card.holder.GetChild();
                 if(!child.every(n=>n.data.parent_element.some(m=>m===card.data.element_id))||
@@ -110,6 +109,8 @@ class MoveAbleCardRootController {
                 }
             }
         }
+        this.save_data_manager.save_data.order=cards.map(n=>n.data.element_id);
+        this.save_data_manager.Save();
         this.move_able.SetMoveAble(false);
         return "";
     }
