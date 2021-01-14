@@ -80,10 +80,7 @@ class MoveAbleCardRootController {
     }
 
     CheckComplete(){
-        if(this.list_root.childNodes.length!==1){
-            console.log("リストにまだ残ってる:"+this.list_root.childNodes.length);
-            return "リストにまだある";
-        }
+
         if(!this.my_holder.my_child_cards.every(n=>n.data.parent_element.some(m=>m==-1))){
             return "配置が間違っています。ループの前後を確認してください";
         }
@@ -108,6 +105,9 @@ class MoveAbleCardRootController {
                     return "順番が間違っています。以下のヒントを基に並べなおしてみてください。\n・"+text;
                 }
             }
+        }
+        if(this.list_root.childNodes.length!==1){
+            return "まだ全て配置していません";
         }
         this.save_data_manager.save_data.order=cards.map(n=>n.data.element_id);
         this.save_data_manager.Save();

@@ -25,7 +25,7 @@
        "hint_text": "",
        "research_help_words":["c 変数宣言"],
        "move_help_text":"データの準備はループより前に行いましょう",
-       "assist_text": "int型にし、プレイしている人を1、敵を2と定義するとマス目と値が一致するので便利です"
+       "assist_text": "int型にし入れる値を、ユーザーを1、敵を2と定義すると、マス目と一致するので便利です"
      },
      {
        "element_id":2,
@@ -44,7 +44,7 @@
            "help_text":"どういうデータなのか"
          },
          {
-           "similar_words": ["保存","保持","セーブ","準備","変数"],
+           "similar_words": ["保存","保持","セーブ","準備","変数","用意"],
            "help_text":"データをどうするのか"
          }
        ],
@@ -57,7 +57,7 @@
        "hint_text": "マス目の情報を管理するにはどうすればいいか",
        "research_help_words":["c 二次元配列"],
        "move_help_text":"データの準備はループより前に行いましょう",
-       "assist_text": "int型にし、空きマスを0、○を1、×を2として定義すると、プレイヤーのデータと一致するので便利です。\n二次元配列の添え数は[横][縦]です"
+       "assist_text": "int型の二次元配列にし値を、空きマスを0、○を1、×を2として定義すると、プレイヤーのデータと一致するので便利です。\n二次元配列の添え数は[横][縦]です。何か処理をする時は二重ループを使用します。"
      },
      {
        "element_id":3,
@@ -80,7 +80,7 @@
        "hint_text": "",
        "research_help_words":["c for"],
        "move_help_text":"",
-       "assist_text": "9回という回数が決まっているため、whileよりforのが良いです"
+       "assist_text": "9回という回数が決まっているため、whileよりforを使用するのが良いです"
      },
      {
        "element_id":4,
@@ -95,15 +95,15 @@
            "help_text":"何を表示するのか"
          },
          {
-           "similar_words": ["表示","描画","3かける3"],
+           "similar_words": ["表示","描画","3かける3","出力"],
            "help_text":"マス目をどうするのか"
          }
        ],
        "irregular_matches": [],
        "hint_text": "画面にはどんな処理をするのか",
-       "research_help_words":["c 二次元配列","c 二重ループ"],
+       "research_help_words":["c 二次元配列","c 二重ループ","c 入出力"],
        "move_help_text":"描画はループの中の最初に行いましょう",
-       "assist_text": "マス目は二次元配列なので、二重のforを使いましょう"
+       "assist_text": "コンソールのため、表示は標準入出力を使用します。マス目は二次元配列なので、二重のforを使い、入っている値で出力する文字を決めましょう。"
      },
      {
        "element_id":5,
@@ -133,18 +133,18 @@
        "child_category":[],
        "matches":[
          {
-           "similar_words": ["入力","マス"],
+           "similar_words": ["マス目の","マスの","数値"],
            "help_text":"何でマスを指定するのか"
          },
          {
-           "similar_words": ["受け取","受取","する","させる"],
+           "similar_words": ["受け取","受取","入力する"],
            "help_text":""
          }
        ],
        "irregular_matches": [
          {
-           "similar_words": ["○","丸","まる","マル"],
-           "help_text":"この機能と○を付ける機能は分けた方がよい"
+           "similar_words": ["○を","丸を","まるを","マルを"],
+           "help_text":"この機能は入力だけの機能としたほうがよい"
          }
        ],
        "hint_text": "○をつけるにはどうするのか",
@@ -182,7 +182,7 @@
        "hint_text": "入力を基に何をするのか",
        "research_help_words":["c 二重ループ"],
        "move_help_text":"入力を行ってからでないと○はつけれません",
-       "assist_text": "1~9の入力の値は、二重ループの変数をi,jとした時、i*3+jに一致します"
+       "assist_text": "1~9の入力の値は、二重ループの変数をi,jとした時、( i*3+j )に一致します"
      },
      {
        "element_id":8,
@@ -234,7 +234,7 @@
        "hint_text": "敵の行動について",
        "research_help_words":["c 二重ループ","c 乱数","c 無限ループ"],
        "move_help_text":"敵の行動は敵のターンにのみ行いましょう",
-       "assist_text": "空いているマスに×をつけるためには、無限ループの中でランダムなマス目をチェックし、空いているマス目だった場合に×を付けbreakするのが一番楽です"
+       "assist_text": "空いているマスに×をつける処理は幾つかやり方がありますが、無限ループの中でランダムな値を取得し、その値のマス目をチェックし、空いているマス目だった場合にのみ×を付けbreakしてループを抜ける処理が一番楽に実装できます。"
      },
      {
        "element_id":10,
@@ -257,7 +257,7 @@
        "hint_text": "ターンの終わりにする処理",
        "research_help_words":["c 二重ループ"],
        "move_help_text":"勝敗判定はプレイヤーの行動が終わってからです",
-       "assist_text": "垂直水平方向と斜め方向で判定します。垂直水平は二重ループを使用し順番に、斜めは配列の中央(1,1)と(0,0),(2,2)又は(2,0),(0,2)を調べましょう、"
+       "assist_text": "垂直水平方向と斜め方向で判定します。垂直水平は二重ループを使用し順番に、斜めは配列の中央(1,1)と(0,0),(2,2)又は(2,0),(0,2)を調べましょう。\n ループを用い、短い行数で判定する方法もありますが、強引に判定しても構いません。\n勝者を入れるint型の変数を用意しておくと、この後の「勝者がいた場合ループを抜ける」機能を実装する際に便利です。"
      },
      {
        "element_id":11,
@@ -267,10 +267,6 @@
        "parent_element": [3],
        "child_category":[],
        "matches":[
-         {
-           "similar_words": ["最後","終わり"],
-           "help_text":"いつこの処理をするのか"
-         },
          {
            "similar_words": ["スクリーン","画面","コンソール","文字","テキスト"],
            "help_text":""
@@ -311,7 +307,7 @@
        "hint_text": "",
        "research_help_words":["c ループ　抜ける"],
        "move_help_text":"ループを抜ける判定は勝敗判定の後です",
-       "assist_text": "勝者がいた場合はループを抜けます"
+       "assist_text": "勝者がいたかどうかをifで判定し、いた場合breakでループを抜けるとゲームが終了します"
      },
      {
        "element_id":13,
@@ -351,13 +347,69 @@
          {
            "similar_words": ["結果"],
            "help_text":""
+         },
+         {
+           "similar_words": ["表示","描画","出す"],
+           "help_text":""
          }
        ],
        "irregular_matches": [],
        "hint_text": "",
-       "research_help_words":["c 二重ループ"],
+       "research_help_words":["c 二次元配列","c 二重ループ","c 入出力"],
        "move_help_text":"結果表示はループの外で行います",
-       "assist_text": "勝者の情報を保存する変数をループの前に準備しましょう"
+       "assist_text": "マス目の表示と同様の表示をしましょう。\n表示した後、何か入力されるまで終了を待ちたい場合は、適当な変数とscanf関数を使いましょう"
+     },
+     {
+       "element_id":15,
+       "system_name":"prepare_result",
+       "category":1,
+       "priority":2,
+       "parent_element": [-1],
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["結果"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["保存","保持","セーブ","準備","変数","用意"],
+           "help_text":"データをどうするのか"
+         }
+       ],
+       "irregular_matches": [
+         {
+           "similar_words": ["int","char","float"],
+           "help_text":"データの型はここでは考えないようにしましょう"
+         }
+       ],
+       "hint_text": "",
+       "research_help_words":["c 変数 宣言"],
+       "move_help_text":"データの準備はループより前に行いましょう",
+       "assist_text": "int型にし入れる値を、ユーザーを1、敵を2と定義すると、ターンのプレイヤーと一致するので便利です"
+     },
+     {
+       "element_id":16,
+       "system_name":"prepare_turn",
+       "category":1,
+       "priority":2,
+       "parent_element": [-1],
+       "child_category":[],
+       "matches":[
+         {
+           "similar_words": ["ターン"],
+           "help_text":""
+         },
+         {
+           "similar_words": ["表示","出す","出力"],
+           "help_text":""
+         }
+       ],
+       "irregular_matches": [],
+       "hint_text": "",
+       "research_help_words":["c for"],
+       "move_help_text":"描画はループの中の最初に行いましょう",
+       "assist_text": "forのループに使用している変数は、そのままターン数になります。"
      }
+
    ]
 }

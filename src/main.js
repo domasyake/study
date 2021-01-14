@@ -10,7 +10,7 @@ async function InitOnDomLoad() {
         column.push(new ColumnData(column_json.data[i]))
     }
 
-    let debug_mode=false;
+    let debug_mode=true;
     let save_data_manager=new SaveDataManager(debug_mode);
     save_data_manager.Load();
 

@@ -177,7 +177,7 @@ header{
 #sw_desc{
     height: 360px;
     width: 360px;
-    display: block;
+    display: none;
 }
 
 #sw_video{
