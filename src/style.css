@@ -55,6 +55,7 @@ header{
     width: auto;
     align-items: center;
     height: 150px;
+    margin-top: 10px;
 }
 #chat_area{
     position: relative;
@@ -257,11 +258,32 @@ header{
     font-size: 10px;
 }
 
+.as_submit{
+    width: 50px;
+    position: relative;
+    bottom:25px;
+
+    right: -10px;
+    height: 30px;
+    max-width: 150px;
+    margin-right: 20px;
+    padding:3px;
+
+    font-size: 10px;
+}
+.as_submit.value{
+    user-select: none;
+}
+.as_submit:active{
+    padding:1px;
+    margin:2px;
+}
+
 .as_child_root{
     padding-left: 30px;
 
     height: auto;
-    width: auto;
+    width: 300px;
     margin-right: 50px;
     overflow-y: auto;
     overflow-x: visible;
@@ -277,6 +299,7 @@ header{
 #assist_card_list{
     height: 100%;
     width: 50%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -287,6 +310,22 @@ header{
 #assist_card_description{
     height: 100%;
     width: 50%;
+    max-width: 500px;
+}
+
+#as_help_title{
+    font-size: 20px;
+
+    border-bottom: darkseagreen;
+    border-bottom-style: solid;
+}
+
+#as_help_word{
+    font-size: 15px;
+}
+
+#as_help_text{
+    font-size: 15px;
 }
 /*=========================Assist Cards=========================*/
 #moveable_card_root{

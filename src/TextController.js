@@ -158,6 +158,12 @@ class TextController {
                     this.assist_controller.SwitchDisplay(true);
                     await this.WaitClick();
                     break;
+                case "testAssist":
+                    this.setText(item[0]);
+                    this.assist_controller.TestDisplay();
+                    this.assist_controller.SwitchDisplay(true);
+                    await this.WaitClick();
+                    break;
                 default:
                     break;
             }

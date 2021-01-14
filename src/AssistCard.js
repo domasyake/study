@@ -3,7 +3,8 @@ class AssistCard
     constructor(cards_root,user_saved_name,data)
     {
         let value=user_saved_name;
-        this.submit_event=new Rx.Subject();
+        let submit_event=new Rx.Subject();
+        this.submit_event=submit_event;
         this.card_root=document.createElement("div");
         this.data=data;
         this.card_root.className="assist_card";
@@ -17,6 +18,15 @@ class AssistCard
         text.className="assist_card_text"
         text.innerText=value;
         this.card_root.appendChild(text);
+
+        //<input type="submit" id="input_submit" class="submit" value="決定"/>
+
+        let submit=document.createElement("input");
+        submit.classList="as_submit submit";
+        submit.value="ヒント表示";
+        this.card_root.appendChild(submit);
+        Rx.Observable.fromEvent(submit,"click")
+            .subscribe(_=>submit_event.onNext())
 
         if(data.child_category.length>0){
             let pin=document.createElement("img");
