@@ -127,6 +127,7 @@ class TextController {
                     this.hint_controller.SwitchDisplay(false);
                     break;
                 case "endMove":
+                    console.log("endMove")
                     this.setText(item[0]);
                     this.moveable_contrller.SwitchDisplay(false);
                     this.check_submit.style.display="none";
@@ -158,6 +159,7 @@ class TextController {
                     await this.WaitClick();
                     break;
                 case "prepareAssist":
+                    console.log("prepareAssist")
                     this.setText(item[0]);
                     this.assist_controller.Prepare();
                     this.assist_controller.SwitchDisplay(true);

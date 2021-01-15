@@ -38,10 +38,13 @@ class MoveAbleCardRootController {
 
         //特殊カードの処理
         let loop_card=cards.filter(n=>n.data.child_category.length>3)[0];
-        my_holder.AddChild(loop_card);
-        let if_cards=cards.filter(n=>n.data.child_category.length>0&&n.data.child_category.length<3);
-        for (let i=0;i<if_cards.length;i++){
-            loop_card.holder.AddChild(if_cards[i]);
+        if(loop_card!==undefined)
+        {
+            my_holder.AddChild(loop_card);
+            let if_cards=cards.filter(n=>n.data.child_category.length>0&&n.data.child_category.length<3);
+            for (let i=0;i<if_cards.length;i++){
+                loop_card.holder.AddChild(if_cards[i]);
+            }
         }
 
         holders=holders.concat(cards.filter(n=>n.holder!==null).map(n=>n.holder));
@@ -81,9 +84,6 @@ class MoveAbleCardRootController {
 
     CheckComplete(){
 
-        if(!this.my_holder.my_child_cards.every(n=>n.data.parent_element.some(m=>m==-1))){
-            return "配置が間違っています。ループの前後を確認してください";
-        }
         let cards=this.my_holder.GetChild();
         let checker=0;
         for (let j=0;j<cards.length;j++){
@@ -108,6 +108,9 @@ class MoveAbleCardRootController {
         }
         if(this.list_root.childNodes.length!==1){
             return "まだ全て配置していません";
+        }
+        if(!this.my_holder.my_child_cards.every(n=>n.data.parent_element.some(m=>m==-1))){
+            return "配置が間違っています。ループの前後を確認してください";
         }
         this.save_data_manager.save_data.order=cards.map(n=>n.data.element_id);
         this.save_data_manager.Save();
