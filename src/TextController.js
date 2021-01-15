@@ -85,9 +85,13 @@ class TextController {
 
                     break;
                 case "invPicture1":
+                    console.log("1")
                     this.setText(item[0]);
                     await this.WaitClick();
+                    console.log("2")
                     this.media_controller.invisibleImg();
+                    console.log("3")
+
                     break;
                 case "picture2":
                     this.setText(item[0]);
@@ -124,6 +128,7 @@ class TextController {
                     break;
                 case "endMove":
                     this.setText(item[0]);
+                    this.moveable_contrller.SwitchDisplay(false);
                     this.check_submit.style.display="none";
                     await this.WaitClick();
                     break;

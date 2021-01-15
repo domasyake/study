@@ -11,7 +11,6 @@ class SwitchableMedia {
     }
 
     Switch(){
-        console.log("a"+this.is_video);
         this.is_video=!this.is_video;
         //動画を流す
         if(this.is_video){

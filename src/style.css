@@ -55,7 +55,7 @@ header{
     width: auto;
     align-items: center;
     height: 150px;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 #chat_area{
     position: relative;
@@ -74,7 +74,7 @@ header{
     color: #ff0000;
     position: absolute;
     pointer-events: none;
-    top: -0.8vw;
+    top: -0.7vw;
     left: 0vw;
     padding-left: 1vw;
     font-size: 1.5vw;
@@ -177,7 +177,12 @@ header{
 #sw_desc{
     height: 360px;
     width: 360px;
-    display: none;
+    display: block;
+}
+
+#description_img{
+    height: 360px;
+    width: 360px;
 }
 
 #sw_video{
@@ -322,10 +327,12 @@ header{
 
 #as_help_word{
     font-size: 15px;
+    user-select: text;
 }
 
 #as_help_text{
     font-size: 15px;
+    user-select: text;
 }
 /*=========================Assist Cards=========================*/
 #moveable_card_root{

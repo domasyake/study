@@ -16,11 +16,11 @@ class SaveDataManager {
         console.log(data)
         if(data===undefined){
             let list = []
-            this.save_data= new SaveData(1, 0, list);
+            this.save_data= new SaveData(1, 0, list,[]);
             this.Save();
         }else{
             let json=JSON.parse(data);
-            this.save_data=new SaveData(4,0,json.tables,json.order);
+            this.save_data=new SaveData(json.current_step,json.current_line,json.tables,json.order);
             this.Save()
         }
     }

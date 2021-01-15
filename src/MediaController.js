@@ -30,6 +30,7 @@ class MediaController {
     }
 
     invisibleImg(){
+        console.log("a")
         let target=document.getElementById("description_img");
         this.display_root.removeChild(target);
     }
