@@ -48,7 +48,13 @@ class SaveDataManager {
 
     Save(){
         if(this.debug_mode)return
-        console.log("セーブしマァス")
-        Cookies.set("save_data",this.save_data.ToStr(), { expires: 365 });
+        console.log("セーブしマァス"+this.save_data)
+        try {
+            Cookies.set("save_data", this.save_data.ToStr(), {expires: 365});
+        }catch{
+            let list = []
+            this.save_data= new SaveData(1, 0, list,[]);
+            this.Save();
+        }
     }
 }
