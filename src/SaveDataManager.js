@@ -47,13 +47,12 @@ class SaveDataManager {
     }
 
     Save(){
-        console.log("セーブしたい"+this.save_data.ToStr())
         if(this.debug_mode)return
         try {
             Cookies.set("save_data", this.save_data.ToStr(), {expires: 365});
         }catch{
             console.log("save_err")
         }
-        console.log("セーブしました"+this.save_data.ToStr())
+        console.log("セーブしました")
     }
 }
