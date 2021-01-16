@@ -42,7 +42,7 @@ class TextController {
 
         for (let current_line=this.save_data_manager.save_data.current_line;current_line< this.current_data.length;current_line++){
             let item=this.current_data[current_line];
-            const mode=String(item[1]).slice(0,-1);
+            const mode=String(item[1]);
             console.log("command:"+mode)
             switch (mode) {
                 case '':
