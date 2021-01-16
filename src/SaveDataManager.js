@@ -13,7 +13,7 @@ class SaveDataManager {
 
     Load(){
         let data=Cookies.get('save_data');
-        console.log(data)
+        console.log("読み込み"+data)
         if(data===undefined){
             let list = []
             this.save_data= new SaveData(1, 0, list,[]);
@@ -47,12 +47,13 @@ class SaveDataManager {
     }
 
     Save(){
+        console.log("セーブしたい"+this.save_data.ToStr())
         if(this.debug_mode)return
-        console.log("セーブしマァス"+this.save_data.ToStr())
         try {
             Cookies.set("save_data", this.save_data.ToStr(), {expires: 365});
         }catch{
             console.log("save_err")
         }
+        console.log("セーブしました"+this.save_data.ToStr())
     }
 }
