@@ -13,7 +13,10 @@ class SaveDataManager {
         document.body.addEventListener('keydown',
             event => {
                 if (event.key === 'q' && event.ctrlKey) {
-                    alert("セーブデータを削除しました。ページを再読み込みしてください")
+                    alert("セーブデータを削除しました。ページを再読み込みしてください");
+                    let list = []
+                    this.save_data= new SaveData(1, 0, list,[]);
+                    this.Save();
                 }
             });
     }
