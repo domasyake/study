@@ -52,9 +52,7 @@ class SaveDataManager {
         try {
             Cookies.set("save_data", this.save_data.ToStr(), {expires: 365});
         }catch{
-            let list = []
-            this.save_data= new SaveData(1, 0, list,[]);
-            this.Save();
+            console.log("save_err")
         }
     }
 }
