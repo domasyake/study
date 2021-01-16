@@ -9,6 +9,13 @@ class SaveDataManager {
             Cookies.remove('save_data');
             console.log("消しﾏｧｽ")
         }
+
+        document.body.addEventListener('keydown',
+            event => {
+                if (event.key === 'q' && event.ctrlKey) {
+                    alert("セーブデータを削除しました。ページを再読み込みしてください")
+                }
+            });
     }
 
     Load(){
