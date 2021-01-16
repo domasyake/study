@@ -5,6 +5,10 @@ class MediaController {
     }
 
     async PlayVideo(path){
+        const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+        await _sleep(1000);
+
         let video=document.createElement("video");
         video.src=path;
         video.className="video";
