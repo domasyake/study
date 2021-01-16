@@ -48,7 +48,7 @@ class SaveDataManager {
 
     Save(){
         if(this.debug_mode)return
-        console.log("セーブしマァス"+this.save_data)
+        console.log("セーブしマァス"+this.save_data.ToStr())
         try {
             Cookies.set("save_data", this.save_data.ToStr(), {expires: 365});
         }catch{

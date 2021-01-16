@@ -22,7 +22,6 @@ class SaveData{
         }
         contain+="],\n";
         contain+="\t\"tables\":[\n";
-        console.log(this.table.length)
         for (let i=0;i<this.table.length;i++){
             contain+="\t{\n"+this.table[i].ToStr()+"\t}";
             if(i===this.table.length-1){
