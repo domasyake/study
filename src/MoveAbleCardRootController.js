@@ -88,24 +88,29 @@ class MoveAbleCardRootController {
         let checker=0;
         for (let j=0;j<cards.length;j++){
             let card=cards[j];
-            console.log("el_id:"+card.data.element_id+",category:"+card.data.category)
-            if(card.data.child_category.length>0&&card.holder!==null){
-                let child=card.holder.GetChild();
-                if(!child.every(n=>n.data.parent_element.some(m=>m===card.data.element_id))||
-                child.some(n=>n.data.parent_element.some(m=>m===-1)))
-                {
-                    return "配置が間違っています。分岐の部分や、ループの前後を確認してください";
-                }
-            }
+            console.log("checker"+checker+"el_id:"+card.data.element_id+",category:"+card.data.category)
+
             if(checker+1===card.data.category||checker===card.data.category){
-                checker=card.data.category;
             }else{
                 let text=card.data.move_help_text;
                 if(text!==""){
                     return "順番が間違っています。以下のヒントを基に並べなおしてみてください。\n・"+text;
                 }
             }
+            checker=card.data.category;
         }
+        for (let j=0;j<cards.length;j++){
+            let card=cards[j];
+            if(card.data.child_category.length>0&&card.holder!==null){
+                let child=card.holder.GetChild();
+                if(!child.every(n=>n.data.parent_element.some(m=>m===card.data.element_id))||
+                    child.some(n=>n.data.parent_element.some(m=>m===-1)))
+                {
+                    return "配置が間違っています。分岐の部分や、ループの前後を確認してください";
+                }
+            }
+        }
+
         if(this.list_root.childNodes.length!==1){
             return "まだ全て配置していません";
         }
