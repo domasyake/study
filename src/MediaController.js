@@ -8,11 +8,10 @@ class MediaController {
 
         const path="media/movie_"+id+".mp4"
         if(first_launch){
-            console.log("a")
             await Rx.Observable.fromEvent(window,"click").first().toPromise();
         }
 
-        let video=document.createElement("video");
+        const video=document.createElement("video");
         video.src=path;
         video.className="video";
 
@@ -30,7 +29,7 @@ class MediaController {
 
     visibleImg(id){
         const path="media/picture_"+id+".png"
-        let img=document.createElement("img");
+        const img=document.createElement("img");
         img.id="description_img";
         img.src=path;
 
@@ -38,8 +37,7 @@ class MediaController {
     }
 
     invisibleImg(){
-        console.log("a")
-        let target=document.getElementById("description_img");
+        const target=document.getElementById("description_img");
         this.display_root.removeChild(target);
     }
 }

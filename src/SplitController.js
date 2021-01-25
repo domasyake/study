@@ -136,7 +136,7 @@ class SplitController{
         this.split_root.style.display=flag?"flex":"none";
         this.input_box.style.display=flag?"block":"none";
         this.input_submit.style.display=flag?"block":"none";
-        this.hint_controller.SwitchDisplay(true);
+        this.hint_controller.SwitchDisplay(flag);
     }
 
     //== 入力周りのメソッド ==

@@ -1,5 +1,6 @@
+//実装の時のルートコントローラ。組立同様カード制御も行う
 class AssistCardController {
-    constructor(column,save_data_manager,) {
+    constructor(column,save_data_manager) {
         this.column=column;
         this.save_data_manager=save_data_manager;
         this.assist_root=document.getElementById("assist_card_root");
@@ -17,29 +18,30 @@ class AssistCardController {
         if(this.initialized)return;
         this.initialized=true;
 
-        let cards=[];
-
+        const cards=[];
 
         //とりま生成
         for (let i=0;i<this.save_data_manager.save_data.order.length;i++){
-            let my_el_id=this.save_data_manager.save_data.order[i];
-            let data=this.column.find(n=>n.element_id===my_el_id);
-            let user_data=this.save_data_manager.save_data.table.find(n=>n.element_id===my_el_id);
-            let card=new AssistCard(this.card_list,user_data.user_saved_name,data);
-            card.submit_event.subscribe(_=>this.DisplayHelp(user_data.user_saved_name,data));
+            //セーブデータにはelement_idだけ並んでる
+            const my_el_id=this.save_data_manager.save_data.order[i];
+            //機能データ
+            const func_data=this.column.find(n=>n.element_id===my_el_id);
+            //セーブデータ内の機能データ
+            const user_data=this.save_data_manager.save_data.table.find(n=>n.element_id===my_el_id);
+            const card=new AssistCard(this.card_list,user_data.user_saved_name,func_data);
+            card.submit_event.subscribe(_=>this.DisplayHelp(user_data.user_saved_name,func_data));
             cards.push(card);
+            //先頭の助言データを確保。あとで入れるの面倒なのでループ内でやっちゃう
             if(i===0){
-                this.test_hint={title:user_data.user_saved_name,data:data};
+                this.test_hint={title:user_data.user_saved_name,data:func_data};
             }
         }
 
+        //階層構造変え。組立通過してる時点で階層構造は保証されてる
         for (let i=0;i<cards.length;i++){
-            let card=cards[i];
-            if(card.data.parent_element.length>0){
-                //ケツが直接の親
-                let direct_parent=card.data.parent_element[card.data.parent_element.length-1];
-                if(direct_parent===-1)continue;
-                let parent_card=cards.find(n=>n.data.element_id===direct_parent);
+            const card=cards[i];
+            if(card.data.parent_element!==-1){
+                let parent_card=cards.find(n=>n.data.element_id===card.data.parent_element);
                 parent_card.holder.appendChild(card.card_root);
             }
         }

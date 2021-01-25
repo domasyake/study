@@ -1,38 +1,38 @@
 class MoveableCard{
 
     constructor(list_root,user_saved_name,data,move_able) {
-        let value=user_saved_name;
-        var root=document.createElement("div");
+        this.name=user_saved_name;
+        const root=document.createElement("div");
         this.current_root=list_root;
         this.card_root=root;
         this.data=data;
         this.holder=null;
         this.element_id=data.element_id;
-        let on_move_end=new Rx.Subject();
+        const on_move_end=new Rx.Subject();
         this.onMoveEnd=on_move_end;
         this.card_root.className="moveable_card";
 
-        let img=document.createElement("img");
+        const img=document.createElement("img");
         img.className="moveable_card_img";
         img.src="img/moveable_card.png";
         this.card_root.appendChild(img);
 
 
-        let text=document.createElement("p");
+        const text=document.createElement("p");
         text.className="moveable_card_text"
-        text.innerText=value;
+        text.innerText=this.name;
         this.card_root.appendChild(text);
 
         list_root.appendChild(this.card_root);
 
-        //Holder処理
+        //子を持てる機能ならHolderを追加
         if(data.child_category.length>0){
-            let pin=document.createElement("img");
+            const pin=document.createElement("img");
             pin.className="moveable_pin";
             pin.src="img/move_able_pin.png";
             this.card_root.appendChild(pin);
 
-            let holder=document.createElement("div");
+            const holder=document.createElement("div");
             holder.className="mv_child_root moveable_decide_holder";
             this.card_root.appendChild(holder);
 
@@ -42,24 +42,22 @@ class MoveableCard{
         }
 
         //移動処理
-        let styles=getComputedStyle(this.card_root);
-        let mouseup_events = Rx.Observable.fromEvent(document, 'mouseup');
-        let mousemove_events = Rx.Observable.fromEvent(document, 'mousemove');
-        let mousedown_events = Rx.Observable.fromEvent(this.card_root, 'mousedown');
+        const styles=getComputedStyle(this.card_root);
+        const mouseup_events = Rx.Observable.fromEvent(document, 'mouseup');
+        //マウスアップはドキュメントで取らないと、マウスを画面外に持ってかれた時にドロップできない
+        const mousemove_events = Rx.Observable.fromEvent(document, 'mousemove');
+        const mousedown_events = Rx.Observable.fromEvent(this.card_root, 'mousedown');
 
-        // mousedown_events.subscribe(_=>console.log("移動開始"+data.user_saved_name));
-        // mouseup_events.subscribe(_=>console.log("移動終了"+data.user_saved_name));
-        let in_move=false;
-        let source = mousedown_events
-            .filter(_=>move_able.move_able)
+        let in_move=false;//移動中フラグがないと、ドラッグされてるかどうかチェックできん
+        const source = mousedown_events
+            .filter(_=>move_able.move_able)//他のカードが移動中でない時
             .flatMap(function(event) {
                 in_move=true;
                 move_able.SetMoveAble(false);
-                var start_left, start_pageX, start_pageY, start_top;
-                start_pageX = event.pageX;
-                start_pageY = event.pageY;
-                start_left = parseInt(styles.getPropertyValue('left'));
-                start_top = parseInt(styles.getPropertyValue('top'));
+                const start_pageX = event.pageX;
+                const start_pageY = event.pageY;
+                const start_left = parseInt(styles.getPropertyValue('left'));
+                const start_top = parseInt(styles.getPropertyValue('top'));
                 root.classList.add('mv_hovering');
                 return mousemove_events.map(function(e) {
                     return {
@@ -104,6 +102,7 @@ class MoveableCard{
     }
 }
 
+//全カードで同じインスタンスを持って、他のカードが移動中は自分を移動できないようにする
 class MoveAbleProperty{
     constructor() {
         this.move_able=true;

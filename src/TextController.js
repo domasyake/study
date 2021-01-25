@@ -6,7 +6,6 @@ class TextController {
         this.chat_text=document.getElementById("chat_text");
         this.triangle=document.getElementById("chat_triangle");
 
-        this.check_submit=document.getElementById("check_submit");
 
         //コマンドで使うコントローラ
         this.split_controller=split_controller;
@@ -17,20 +16,14 @@ class TextController {
 
         this.SwitchTriAngle(false);
 
-        this.check_submit.style.display="none";
-
         this.regex=/[0-9]/;//数値が含まれているかチェックする正規表現
         this.first_launch=true;//実行時最初のテキストかどうかのフラグ
         this.current_data=[];
         this.on_area_click=new Rx.Subject();
-        let on_check_submit=new Rx.Subject();
-        this.on_check_submit=on_check_submit;
 
 
         Rx.Observable.fromEvent(document.getElementById("chat_area"),"click")
             .subscribe(()=>this.ClickArea());
-        Rx.Observable.fromEvent(this.check_submit,"click")
-            .subscribe(()=>on_check_submit.onNext());
     }
 
     async LoadData(file_name){
@@ -111,23 +104,17 @@ class TextController {
                 case "loopMove":
                     this.moveable_contrller.Prepare();
                     this.moveable_contrller.SwitchDisplay(true);
-                    this.check_submit.style.display="block";
                     this.setText(item[0]);
-                    await this.on_check_submit.first().toPromise();
-                    this.check_submit.style.display="none";
-                    let res=this.moveable_contrller.CheckComplete();
-                    if(res===""){
-                    }else{
+                    let res=await this.moveable_contrller.CheckComplete();
+                    if(res!==""){
                         this.setText(res);
                         current_line--;
                         await this.WaitClick();
-                        this.check_submit.style.display="block";
                     }
                     break;
                 case "endMove":
                     this.setText(item[0]);
                     this.moveable_contrller.SwitchDisplay(false);
-                    this.check_submit.style.display="none";
                     await this.WaitClick();
                     break;
 
