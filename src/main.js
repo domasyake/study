@@ -17,7 +17,7 @@ async function InitOnDomLoad() {
 
     let card_controller = new FunctionCardController(save_data_manager);
     let moveable_controller=new MoveAbleCardRootController(save_data_manager,column_json.data);
-    const split_controller=new SplitController(column_json.data,save_data_manager);
+    const split_controller=new SplitController(column_json.data,save_data_manager,card_controller);
     let assist_controller=new AssistCardController(column_json.data,save_data_manager);
     let media_controller=new MediaController(document.getElementById("control_area"));
 

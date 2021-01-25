@@ -15,22 +15,18 @@ class FunctionCardController {
             this.cards.push(new_card);
         }
 
-        save_data_manager.on_update_data
-            .subscribe(_=>{
-                for (let i=0;i<this.save_data_manager.save_data.table.length;i++){
-                    const item=save_data_manager.save_data.table[i];
-                    if(!this.cards.some(n=>n.data.element_id===item.element_id)){
-                        const new_card=new FunctionCard(card_root,item);
-                        new_card.delete_event
-                            .subscribe(val=>this.delete_event.onNext(val))
-                        this.cards.push(new_card);
-                    }
-                }
-            })
+
         this.delete_event
             .subscribe(val=>{
                 this.save_data_manager.deleteAtTable(val);
             })
+    }
+
+    addCard(data,name){
+        const new_card=new FunctionCard(this.card_root, {user_saved_name:name,element_id:data.element_id});
+        new_card.delete_event
+            .subscribe(val=>this.delete_event.onNext(val))
+        this.cards.push(new_card);
     }
 
     SwitchDisplay(flag){

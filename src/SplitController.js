@@ -1,7 +1,7 @@
 //分割に関する処理を制御するルートコントローラ
 class SplitController{
 
-    constructor(column,save_data_manager) {
+    constructor(column,save_data_manager,function_card_controller) {
         //データ
         this.column=column;
         this.split_data=null;
@@ -9,6 +9,7 @@ class SplitController{
         //サブコントローラ
         this.save_data_manager=save_data_manager;
         this.split_root=document.getElementById("function_card_root");
+        this.card_controller=function_card_controller;
         this.switchable_media=new SwitchableMedia();
         this.hint_controller=new HintController(
             document.getElementById("hint_button"),
@@ -46,8 +47,8 @@ class SplitController{
             })
             .filter(n=>n.match_num>0) //１つでも条件満たしてるのだけでフィルタ
             .sort((n,m)=>{ //降順ソート
-                if( n > m ) return -1;
-                if( n < m ) return 1;
+                if( n.match_num > m.match_num ) return -1;
+                if( n.match_num < m.match_num ) return 1;
                 return 0;
             });
 
@@ -74,6 +75,7 @@ class SplitController{
             if(help_texts.length===0){
                 console.log("成功");
                 this.save_data_manager.pushTable(target.element_id,word);
+                this.card_controller.addCard(target,word);
                 this.resetInput();
                 return this.split_data.agree;
             }else{
