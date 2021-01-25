@@ -17,14 +17,12 @@ class SplitController{
         this.split_data=await getJsonData("data/SplitData.json");
     }
 
-    checkWord(word,force=false){
+    checkWord(word){
         console.log("入力:"+word);
 
         let targets=this.column
+            .filter(n=>n.matches.length!==0)//length0はexample用の機能データなので除外
             .filter(n=>n.matches.some(m=>m.similar_words.some(k=>word.includes(k))));
-        if(!force){
-            targets=targets.filter(n=>n.priority>1);
-        }
         let match_num=0;
         let target=null;
         for (let i=0;i<targets.length;i++){
@@ -68,7 +66,6 @@ class SplitController{
                 return {mess:this.split_data.agree,success:true};
             }else{
                 let res=this.split_data.near;
-                console.log("res"+res)
                 if(help_texts.length>2){
                     help_texts.splice(0,1).filter(n=>n!=="").forEach(n=>res+="\n・"+n);
                 }else{
@@ -88,6 +85,21 @@ class SplitController{
             .some(m=>m.element_id===n.element_id));
     }
 
+    exampleSplit(index){
+        const data=this.split_data.example_func_data[index];
+        for (let i=0;i<data.length;i++){
+            this.save_data_manager.pushTable(data[i].element_id,data[i].name);
+        }
+    }
+
+    splitForMove(){
+        const data=this.split_data.for_move_func_data;
+        for (let i=0;i<data.length;i++){
+            this.save_data_manager.pushTable(data[i].element_id,data[i].name);
+        }
+    }
+
+
     getHint(){
         let filted=this.column.filter(n=>!this.save_data_manager.save_data.table
             .some(m=>m.element_id===n.element_id))
@@ -102,6 +114,7 @@ class SplitController{
             return filted[this.current_hint_index].hint_text;
         }
     }
+
     SwitchDisplay(flag){
         this.split_root.style.display=flag?"flex":"none";
     }

@@ -109,7 +109,7 @@
        "element_id":5,
        "system_name":"if_player",
        "category":4,
-       "priority":1,
+       "priority":0,
        "parent_element": [3],
        "child_category":[5,6],
        "matches":[
@@ -188,7 +188,7 @@
        "element_id":8,
        "system_name":"if_enemy",
        "category":7,
-       "priority":1,
+       "priority":0,
        "parent_element": [3],
        "child_category":[8],
        "matches":[

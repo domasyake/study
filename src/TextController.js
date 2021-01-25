@@ -59,6 +59,33 @@ class TextController {
                     this.setText(item[0]);
                     await this.WaitClick();
                     break;
+
+                case "playMovie":
+                    this.setText(item[0]);
+                    await this.media_controller.PlayVideo(mode_arg,this.first_launch);
+                    await this.WaitClick();
+                    break;
+                case "picture":
+                    this.setText(item[0]);
+                    this.media_controller.visibleImg(mode_arg);
+                    await this.WaitClick();
+                    break;
+                case "invPicture":
+                    this.setText(item[0]);
+                    await this.WaitClick();
+                    this.media_controller.invisibleImg();
+                    break;
+
+                case "prepareSplit":
+                    this.setText(item[0]);
+                    this.split_controller.SwitchDisplay(true);
+                    await this.WaitClick();
+                    break;
+                case "exampleSplit":
+                    this.setText(item[0]);
+                    this.split_controller.exampleSplit(mode_arg);
+                    await this.WaitClick();
+                    break;
                 case "loopSplit":
                     this.split_controller.SwitchDisplay(true);
                     this.input_box.style.display="block";
@@ -77,20 +104,19 @@ class TextController {
                         current_line--;
                     }
                     break;
-                case "playMovie":
-                    this.setText(item[0]);
-                    await this.media_controller.PlayVideo(mode_arg,this.first_launch);
-                    await this.WaitClick();
+                case "endSplit":
+                    this.split_controller.SwitchDisplay(false);
+                    this.input_box.style.display="none";
+                    this.input_submit.style.display="none";
+                    this.hint_controller.SwitchDisplay(false);
                     break;
-                case "picture":
+
+                case "prepareMove":
                     this.setText(item[0]);
-                    this.media_controller.visibleImg(mode_arg);
+                    this.split_controller.splitForMove();
+                    this.moveable_contrller.Prepare();
+                    this.moveable_contrller.SwitchDisplay(true);
                     await this.WaitClick();
-                    break;
-                case "invPicture":
-                    this.setText(item[0]);
-                    await this.WaitClick();
-                    this.media_controller.invisibleImg();
                     break;
                 case "loopMove":
                     this.moveable_contrller.Prepare();
@@ -108,44 +134,13 @@ class TextController {
                         this.check_submit.style.display="block";
                     }
                     break;
-                case "endSplit":
-                    this.split_controller.SwitchDisplay(false);
-                    this.input_box.style.display="none";
-                    this.input_submit.style.display="none";
-                    this.hint_controller.SwitchDisplay(false);
-                    break;
                 case "endMove":
-                    console.log("endMove")
                     this.setText(item[0]);
                     this.moveable_contrller.SwitchDisplay(false);
                     this.check_submit.style.display="none";
                     await this.WaitClick();
                     break;
-                case "prepareSplit":
-                    this.setText(item[0]);
-                    this.split_controller.SwitchDisplay(true);
-                    await this.WaitClick();
-                    break;
-                case "splitLoop":
-                    this.setText(item[0]);
-                    this.split_controller.checkWord("9回ループさせる");
-                    this.split_controller.checkWord("勝者が出たらループを終わらせる");
-                    await this.WaitClick();
-                    break;
-                case "splitTurn":
-                    this.setText(item[0]);
-                    this.split_controller.checkWord("ターンのプレイヤーを保存する変数を用意する");
-                    this.split_controller.checkWord("ターンの終わりにプレイヤーを切り替える");
-                    await this.WaitClick();
-                    break;
-                case "prepareMove":
-                    this.setText(item[0]);
-                    this.split_controller.checkWord("ユーザーのターン",true);
-                    this.split_controller.checkWord("敵のターン",true);
-                    this.moveable_contrller.Prepare();
-                    this.moveable_contrller.SwitchDisplay(true);
-                    await this.WaitClick();
-                    break;
+
                 case "prepareAssist":
                     console.log("prepareAssist")
                     this.setText(item[0]);
