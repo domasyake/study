@@ -15,7 +15,7 @@ class SaveDataManager {
                 if (event.key === 'q' && event.ctrlKey) {
                     alert("セーブデータを削除しました。ページを再読み込みしてください");
                     let list = []
-                    this.save_data= new SaveData(1, 0, list,[]);
+                    this.save_data= new SaveData(0, 0, list,[]);
                     this.Save();
                 }
             });

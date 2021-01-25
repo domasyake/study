@@ -10,8 +10,8 @@ class StepManager {
     async StartStep()
     {
         let current_step=this.save_data_manager.save_data.current_step;
-        this.step_display.innerText="Step "+(current_step-1)+"/3";
-        await this.text_controller.LoadData("script/step"+current_step+".csv");
+        this.step_display.innerText="Step "+(current_step)+"/3";
+        await this.text_controller.LoadData("script/step_"+current_step+".csv");
         await this.text_controller.StartChat();
         current_step++;
         if(current_step<5){
