@@ -19,6 +19,8 @@ class TextController {
         this.input_submit.style.display="none";
         this.check_submit.style.display="none";
 
+        this.regex=/[0-9]/;//数値が含まれているかチェックする正規表現
+        this.first_launch=true;//実行時最初のテキストかどうかのフラグ
         this.current_data=[];
         this.on_area_click=new Rx.Subject();
         this.on_input_submit=new Rx.Subject();
@@ -38,12 +40,20 @@ class TextController {
     }
 
     async StartChat(){
-        let temp_data=[];
-
+        //ループ開始時にSaveDataから行を読み込む
         for (let current_line=this.save_data_manager.save_data.current_line;current_line< this.current_data.length;current_line++){
             let item=this.current_data[current_line];
-            const mode=String(item[1]);
-            console.log("command:"+mode)
+            //const mode=String(item[1])
+            //ローカルサーバだと改行コードも含まれてしまうのでこっち使う
+            let mode=String(item[1]).slice(0,-1);
+            let mode_arg=-1;
+            if(this.regex.test(mode)){
+                let match_char=this.regex.exec(mode)[0];
+                mode_arg=Number(match_char);
+                mode=mode.replace(match_char,"");
+            }
+
+            console.log("command:"+mode+" , arg:"+mode_arg)
             switch (mode) {
                 case '':
                     this.setText(item[0]);
@@ -67,39 +77,17 @@ class TextController {
                         current_line--;
                     }
                     break;
-                case "clearFunction":
-                    this.split_controller.SwitchDisplay(false);
+                case "playMovie":
                     this.setText(item[0]);
-                    await this.WaitClick();
-
-                    break;
-                case "playMovie1":
-                    this.setText(item[0]);
-                    await this.media_controller.PlayVideo("media/play.mp4");
+                    await this.media_controller.PlayVideo(mode_arg,this.first_launch);
                     await this.WaitClick();
                     break;
-                case "picture1":
+                case "picture":
                     this.setText(item[0]);
-                    this.media_controller.visibleImg("media/desc.png");
+                    this.media_controller.visibleImg(mode_arg);
                     await this.WaitClick();
-
                     break;
-                case "invPicture1":
-                    console.log("1")
-                    this.setText(item[0]);
-                    await this.WaitClick();
-                    console.log("2")
-                    this.media_controller.invisibleImg();
-                    console.log("3")
-
-                    break;
-                case "picture2":
-                    this.setText(item[0]);
-                    this.media_controller.visibleImg("media/step.png");
-                    await this.WaitClick();
-
-                    break;
-                case "invPicture2":
+                case "invPicture":
                     this.setText(item[0]);
                     await this.WaitClick();
                     this.media_controller.invisibleImg();
@@ -174,6 +162,7 @@ class TextController {
                 default:
                     break;
             }
+            this.first_launch=false;
             this.save_data_manager.pushCurrentLine(current_line+1);
         }
     }

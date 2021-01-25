@@ -1,7 +1,9 @@
 
 document.addEventListener('DOMContentLoaded', InitOnDomLoad)
+window.onload=windowLoad;
 
 var text_controller;
+let save_data_manager;
 
 async function InitOnDomLoad() {
     let column_json = await getJsonData("data/Column.json");
@@ -10,8 +12,7 @@ async function InitOnDomLoad() {
         column.push(new ColumnData(column_json.data[i]))
     }
 
-    let debug_mode=false;
-    let save_data_manager=new SaveDataManager(debug_mode);
+    save_data_manager=new SaveDataManager(false);
     save_data_manager.Load();
 
     let card_controller = new FunctionCardController(save_data_manager);
@@ -37,6 +38,10 @@ async function InitOnDomLoad() {
     //await text_controller.LoadData("script/test.csv");
     //text_controller.StartChat();
 
+
+}
+
+function windowLoad() {
     let step_manager=new StepManager(text_controller,save_data_manager);
     step_manager.StartStep();
 }

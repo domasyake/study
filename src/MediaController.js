@@ -4,10 +4,13 @@ class MediaController {
         this.display_root=display_root;
     }
 
-    async PlayVideo(path){
-        const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    async PlayVideo(id,first_launch){
 
-        await _sleep(1000);
+        const path="media/movie_"+id+".mp4"
+        if(first_launch){
+            console.log("a")
+            await Rx.Observable.fromEvent(window,"click").first().toPromise();
+        }
 
         let video=document.createElement("video");
         video.src=path;
@@ -25,7 +28,8 @@ class MediaController {
         })
     }
 
-    visibleImg(path){
+    visibleImg(id){
+        const path="media/picture_"+id+".png"
         let img=document.createElement("img");
         img.id="description_img";
         img.src=path;
