@@ -33,7 +33,7 @@ class TextController {
         for (let current_line=this.save_data_manager.save_data.current_line;current_line< this.current_data.length;current_line++){
             const text_data=this.current_data[current_line];
             const chat=text_data[0];
-            let mode=String(item[1])
+            let mode=String(text_data[1])
             //ローカルサーバだと改行コードも含まれてしまうのでこっち使う
             //let mode=String(text_data[1]).slice(0,-1);
             let mode_arg=-1;
