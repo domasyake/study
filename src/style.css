@@ -3,7 +3,6 @@
 body{
     background-image: url("../img/bg.png");
     background-repeat: no-repeat;
-
 }
 header{
     height: 100px;
@@ -32,7 +31,6 @@ header{
     position: relative;
     height: 500px;
 }
-
 #description_img{
     height: 480px;
     width: 480px;
@@ -40,14 +38,12 @@ header{
     margin-right: auto;
     margin-left: auto;
 }
-
 .video{
     height: 360px;
     text-align: center;
     margin-right: auto;
     margin-left: auto;
 }
-
 /*=========================Char Area=========================*/
 #char_area{
     display: flex;
@@ -60,14 +56,17 @@ header{
 #chat_area{
     position: relative;
     width: 85%;
-
+}
+#chat_image {
+    width: 100%;
+    min-height: 130px;
+    max-height: 155px;
 }
 #chat_image:active {
     padding-bottom: 4px;
     border: 0px;
 }
 #char{
-
     max-height: 150px;
 }
 #chat_text {
@@ -79,12 +78,6 @@ header{
     padding-left: 1vw;
     font-size: 1.5vw;
     padding-right: 4vw;
-
-}
-#chat_image {
-    width: 100%;
-    min-height: 130px;
-    max-height: 155px;
 }
 #chat_triangle{
     pointer-events: none;
@@ -94,7 +87,6 @@ header{
     bottom: 3vw;
     right: 4vw;
     animation: move-y .5s infinite alternate ease-in-out;
-
 }
 @keyframes move-y {
     from {
@@ -110,7 +102,6 @@ header{
     display: flex;
     height: 50px;
 }
-
 #input_box{
     text-indent: 1em;
     width: 700px;
@@ -118,11 +109,9 @@ header{
     background: url("../img/input_field.png") left top no-repeat;
     background-size: 100% 100%;
 }
-
 .submit{
     border: 0px;
     width:204px;
-
     background: url("../img/submt_button_1.png") left top no-repeat;
     background-size: 100% 100%;
 }
@@ -130,25 +119,21 @@ header{
     cursor: pointer;
     opacity:0.7;
 }
-
 .submit:active{
     padding-top:6px;
     padding-bottom:4px;
 
 }
-
 /*=========================Hint Area=========================*/
 #hint_area{
     display: flex;
     height: 50px;
     align-items: center;
 }
-
 #hint_button{
     border: 0px;
     width:100px;
     height: 40px;
-
     background: url("../img/submt_button_1.png") left top no-repeat;
     background-size: 100% 100%;
 }
@@ -156,16 +141,13 @@ header{
     cursor: pointer;
     opacity:0.7;
 }
-
 #hint_button:active{
     padding-top:6px;
     padding-bottom:4px;
 }
-
 #hint_text{
     margin:10px;
 }
-
 /*=========================Switchable media=========================*/
 #switchable_media{
     height: 100%;
@@ -174,28 +156,23 @@ header{
     align-content: space-between;
     width: 480px;
 }
-
 #sw_desc{
     height: 360px;
     width: 360px;
     display: block;
 }
-
 #description_img{
     height: 360px;
     width: 360px;
 }
-
 #sw_video{
     height: 360px;
     display: none;
 }
-
 #sw_switcher{
     margin-top: 10px;
     height: 50px;
 }
-
 /*=========================Function Cards=========================*/
 #function_card_root{
     display: flex;
@@ -211,9 +188,7 @@ header{
 }
 .function_card{
     position: relative;
-
 }
-
 .function_card_img{
     height: 90px;
 }
@@ -224,7 +199,6 @@ header{
     right: -20px;
     z-index: 1;
 }
-
 .function_card_text{
     position: absolute;
     width: 80%;
@@ -236,12 +210,80 @@ header{
     margin-right: 10px;
 }
 
+/*=========================MoveAble Cards=========================*/
+#moveable_card_root{
+    height: 100%;
+    display: flex;
+}
+.moveable_card{
+    margin-top:10px ;
+    position: relative;
+    width: auto;
+    height: auto;
+}
+.moveable_card_img{
+    height: 50px;
+    width: 200px;
+    pointer-events: none;
+}
+.moveable_card_text{
+    position: absolute;
+    top: -5px;
+    height: 30px;
+    max-width: 150px;
+    margin-right: 20px;
+    margin-left: 30px;
+    pointer-events: none;
+    font-size: 10px;
+}
+.moveable_pin{
+    height: 30px;
+    position: absolute;
+    top: 40px;
+    left: 10px;
+}
+.mv_child_root{
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    height: auto;
+}
+.mv_hovering {
+    z-index: 5;
+}
+#moveable_decide{
+    height: 90%;
+    width: auto;
+    margin-right: 50px;
+    overflow-y: auto;
+    overflow-x: visible;
+    padding-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+.moveable_decide_holder{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    border-color: darkblue;
+    border-width: 1px 0px 1px 1px;
+    border-style: solid;
+}
+#moveable_list{
+    margin-top: 30px;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
 /*=========================Assist Cards=========================*/
 .assist_card{
     margin-top: 10px;
     position: relative;
 }
-
 .assist_card_img{
     height: 50px;
     width: 200px;
@@ -263,18 +305,15 @@ header{
     pointer-events: none;
     font-size: 10px;
 }
-
 .as_submit{
     width: 50px;
     position: relative;
     bottom:25px;
-
     right: -10px;
     height: 30px;
     max-width: 150px;
     margin-right: 20px;
     padding:3px;
-
     font-size: 10px;
 }
 .as_submit.value{
@@ -284,10 +323,8 @@ header{
     padding:1px;
     margin:2px;
 }
-
 .as_child_root{
     padding-left: 30px;
-
     height: auto;
     width: 300px;
     margin-right: 50px;
@@ -297,7 +334,6 @@ header{
     border-width: 1px 0px 1px 1px;
     border-style: solid;
 }
-
 #assist_card_root{
     display: flex;
     height: 100%;
@@ -312,106 +348,21 @@ header{
     justify-content: flex-start;
     overflow-y: auto;
 }
-
 #assist_card_description{
     height: 100%;
     width: 50%;
     max-width: 500px;
 }
-
 #as_help_title{
     font-size: 20px;
-
     border-bottom: darkseagreen;
     border-bottom-style: solid;
 }
-
 #as_help_word{
     font-size: 15px;
     user-select: text;
 }
-
 #as_help_text{
     font-size: 15px;
     user-select: text;
-}
-/*=========================Assist Cards=========================*/
-#moveable_card_root{
-    height: 100%;
-    display: flex;
-}
-.moveable_card{
-
-    margin-top:10px ;
-    position: relative;
-    width: auto;
-    height: auto;
-}
-
-.moveable_card_img{
-    height: 50px;
-    width: 200px;
-    pointer-events: none;
-}
-
-.moveable_card_text{
-    position: absolute;
-    top: -5px;
-    height: 30px;
-    max-width: 150px;
-    margin-right: 20px;
-    margin-left: 30px;
-    pointer-events: none;
-    font-size: 10px;
-}
-
-.moveable_pin{
-    height: 30px;
-    position: absolute;
-    top: 40px;
-    left: 10px;
-}
-.mv_child_root{
-    padding-left: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-
-
-    height: auto;
-}
-
-.mv_hovering {
-    z-index: 5;
-}
-
-
-#moveable_decide{
-    height: 90%;
-    width: auto;
-    margin-right: 50px;
-    overflow-y: auto;
-    overflow-x: visible;
-    padding-right: 20px;
-    padding-top: 30px;
-    padding-bottom: 40px;
-}
-
-.moveable_decide_holder{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    border-color: darkblue;
-    border-width: 1px 0px 1px 1px;
-    border-style: solid;
-}
-
-#moveable_list{
-    margin-top: 30px;
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
 }
