@@ -1,22 +1,13 @@
 class HintController {
 
     constructor(hint_button,hint_text,
-                save_data_manager,
-                split_controller)
+                hint_controller)
     {
         this.hint_button=hint_button;
         this.hint_text=hint_text;
         Rx.Observable.fromEvent(hint_button,"click")
             .subscribe(_=>{
-
-                let step=save_data_manager.save_data.current_step;
-                let use=split_controller;
-                // switch (step) {
-                //     case 2:
-                //         use=split_controller;
-                //         break;
-                //}
-                const hint=use.getHint();
+                const hint=hint_controller.getHint();
                 if(hint===""){
                     hint_text.innerText="もうヒントがありません";
                 }else{

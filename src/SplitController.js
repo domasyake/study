@@ -1,23 +1,39 @@
+//分割に関する処理を制御するルートコントローラ
 class SplitController{
 
     constructor(column,save_data_manager) {
+        //データ
         this.column=column;
+        this.split_data=null;
+        this.current_hint_index=0;
+        //サブコントローラ
         this.save_data_manager=save_data_manager;
         this.split_root=document.getElementById("function_card_root");
         this.switchable_media=new SwitchableMedia();
+        this.hint_controller=new HintController(
+            document.getElementById("hint_button"),
+            document.getElementById("hint_text"),
+            this);
 
-        this.split_data=null;
-        this.current_hint_index=0;
+        //入力
+        this.on_input_submit=new Rx.Subject();
+        this.input_box=document.getElementById("input_box");
+        this.input_submit=document.getElementById("input_submit");
+        Rx.Observable.fromEvent(this.input_submit,"click")
+            .subscribe(()=>this.SubmitNextButton());
 
+        //初期化
         this.loadJson();
         this.SwitchDisplay(false);
+
     }
 
     async loadJson(){
         this.split_data=await getJsonData("data/SplitData.json");
     }
 
-    checkWord(word){
+    async checkWord(){
+        let word=await this.getInput();
         console.log("入力:"+word);
 
         let targets=this.column
@@ -43,13 +59,12 @@ class SplitController{
             }
         }
 
+        //該当するのは見つかった
         if (target!==null) {
-            //該当するのは見つかった
             let help_texts=[];
             console.log("TargetMatchFinal:\n"+target.element_id)
             for (let i=0;i<target.matches.length;i++){
                 if(!target.matches[i].similar_words.some(n=>word.includes(n))){
-                    //console.log("not match text:"+target.matches[i].help_text)
                     help_texts.push(target.matches[i].help_text);
                 }
             }
@@ -117,5 +132,21 @@ class SplitController{
 
     SwitchDisplay(flag){
         this.split_root.style.display=flag?"flex":"none";
+        this.input_box.style.display=flag?"block":"none";
+        this.input_submit.style.display=flag?"block":"none";
+        this.hint_controller.SwitchDisplay(true);
+    }
+
+    resetInput(){
+        this.input_box.value="";
+    }
+
+    async getInput(){
+        await this.on_input_submit.first().toPromise();
+        this.input_submit.style.display="none";
+        return String(this.input_box.value);
+    }
+    SubmitNextButton(){
+        this.on_input_submit.onNext()
     }
 }
