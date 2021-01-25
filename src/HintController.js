@@ -1,8 +1,6 @@
 class HintController {
 
-    constructor(hint_button,hint_text,
-                hint_controller)
-    {
+    constructor(hint_button,hint_text,hint_controller){
         this.hint_button=hint_button;
         this.hint_text=hint_text;
         Rx.Observable.fromEvent(hint_button,"click")

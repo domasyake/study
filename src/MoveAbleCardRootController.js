@@ -47,7 +47,7 @@ class MoveAbleCardRootController {
         for (let i=0;i<this.save_data_manager.save_data.table.length;i++){
             let user_data=this.save_data_manager.save_data.table[i];
             let data=this.column.find(n=>n.element_id===user_data.element_id);
-            cards.push(new MoveableCard(this.list_root,user_data.user_saved_name,data,move_able));
+            cards.push(new MoveAbleCard(this.list_root,user_data.user_saved_name,data,move_able));
         }
 
         //root直下の子を持てる機能をrootに追加

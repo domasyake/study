@@ -1,7 +1,6 @@
-class AssistCard
-{
-    constructor(cards_root,user_saved_name,data)
-    {
+class AssistCard{
+
+    constructor(cards_root,user_saved_name,data){
         const value=user_saved_name;
         const submit_event=new Rx.Subject();
         this.submit_event=submit_event;
@@ -12,7 +11,7 @@ class AssistCard
         img.className="assist_card_img";
         img.src="img/assist_card.png";
         this.card_root.appendChild(img);
-        
+
         const text=document.createElement("p");
         text.className="assist_card_text"
         text.innerText=value;

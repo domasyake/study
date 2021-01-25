@@ -1,7 +1,6 @@
 class FunctionCard {
 
-    constructor(cards_root,data)
-    {
+    constructor(cards_root,data){
         const value=data.user_saved_name;
         this.delete_event=new Rx.Subject();
         this.card_root=document.createElement("div");

@@ -9,11 +9,11 @@ class ColumnData{
         this.child_category=json_obj.child_category;
         this.matches=[];
         for (let i=0;i<json_obj.matches.length;i++){
-            this.matches.push(new MatchData(json_obj.matches[i].similar_words,json_obj.matches[i].help_text))
+            this.matches.push(new MatchData(json_obj.matches[i].similar_words,json_obj.matches[i].help_text));
         }
         this.irregular_matches=[];
         for (let i=0;i<json_obj.irregular_matches.length;i++){
-            this.matches.push(new MatchData(json_obj.irregular_matches[i].similar_words,json_obj.matches[i].help_text))
+            this.matches.push(new MatchData(json_obj.irregular_matches[i].similar_words,json_obj.matches[i].help_text));
         }
         this.hint_text=json_obj.hint_text;
         this.research_help_words=json_obj.research_help_words;
@@ -27,7 +27,7 @@ class MatchData {
     constructor(similar_words,help_text) {
         this.similar_words=[];
         for (let i=0;i<similar_words.matches.length;i++){
-            this.similar_words.push(similar_words[i])
+            this.similar_words.push(similar_words[i]);
         }
         this.help_text=help_text;
     }

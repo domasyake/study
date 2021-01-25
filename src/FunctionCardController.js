@@ -1,4 +1,5 @@
 class FunctionCardController {
+
     constructor(save_data_manager) {
         const card_root=document.getElementById("function_card_list");
         this.card_root=card_root;
@@ -6,8 +7,7 @@ class FunctionCardController {
         this.cards=[];
         this.delete_event=new Rx.Subject();
 
-        for (let i=0;i<this.save_data_manager.save_data.table.length;i++)
-        {
+        for (let i=0;i<this.save_data_manager.save_data.table.length;i++) {
             const new_card=new FunctionCard(card_root,save_data_manager.save_data.table[i]);
             new_card.delete_event
                 .subscribe(val=>this.delete_event.onNext(val))

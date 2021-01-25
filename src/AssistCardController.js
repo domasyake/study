@@ -1,5 +1,6 @@
 //実装の時のルートコントローラ。組立同様カード制御も行う
 class AssistCardController {
+
     constructor(column,save_data_manager) {
         this.column=column;
         this.save_data_manager=save_data_manager;

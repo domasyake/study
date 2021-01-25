@@ -5,12 +5,13 @@ class SaveData{
         this.current_line=current_line;
         this.table=[];
         for (let i=0;i<table.length;i++){
-            var item=table[i];
-            this.table.push(new SaveDataColumn(item.element_id,item.unique_id,item.user_saved_name,item.delete_able))
+            const item=table[i];
+            this.table.push(new SaveDataColumn(item.element_id,item.unique_id,item.user_saved_name,item.delete_able));
         }
         this.order=order;
     }
 
+    //Json用に整形して文字列にする
     ToStr(){
         let contain = "{\n";
         contain+="\t\"current_step\":"+this.current_step+",\n";
@@ -25,12 +26,12 @@ class SaveData{
         for (let i=0;i<this.table.length;i++){
             contain+="\t{\n"+this.table[i].ToStr()+"\t}";
             if(i===this.table.length-1){
-                contain+="\n"
+                contain+="\n";
             }else{
-                contain+=",\n"
+                contain+=",\n";
             }
         }
-        contain+="\t]\n}"
+        contain+="\t]\n}";
         return contain;
     }
 }

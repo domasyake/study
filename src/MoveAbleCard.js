@@ -1,4 +1,4 @@
-class MoveableCard{
+class MoveAbleCard{
 
     constructor(list_root,user_saved_name,data,move_able) {
         this.name=user_saved_name;

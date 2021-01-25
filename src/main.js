@@ -1,25 +1,23 @@
+//JavaScript実行のエントリポイント。進行はTextControllerが行うので、依存関係の解決と起動だけ行う
 
 document.addEventListener('DOMContentLoaded', InitOnDomLoad)
 window.onload=windowLoad;
 
-var text_controller;
+let text_controller;
 let save_data_manager;
 
 async function InitOnDomLoad() {
-    let column_json = await getJsonData("data/Column.json");
-    let column=[];
-    for (let i=0;i<column_json.data;i++){
-        column.push(new ColumnData(column_json.data[i]))
-    }
+    const column_json = await getJsonData("data/Column.json");
+    console.log(column_json)
 
     save_data_manager=new SaveDataManager(false);
     save_data_manager.Load();
 
-    let card_controller = new FunctionCardController(save_data_manager);
-    let moveable_controller=new MoveAbleCardRootController(save_data_manager,column_json.data);
+    const card_controller = new FunctionCardController(save_data_manager);
+    const moveable_controller=new MoveAbleCardRootController(save_data_manager,column_json.data);
     const split_controller=new SplitController(column_json.data,save_data_manager,card_controller);
-    let assist_controller=new AssistCardController(column_json.data,save_data_manager);
-    let media_controller=new MediaController(document.getElementById("control_area"));
+    const assist_controller=new AssistCardController(column_json.data,save_data_manager);
+    const media_controller=new MediaController(document.getElementById("control_area"));
 
     text_controller = new TextController(
         split_controller,
@@ -28,11 +26,9 @@ async function InitOnDomLoad() {
         save_data_manager,
         assist_controller
     );
-
+    //テストデータを喋らせる
     //await text_controller.LoadData("script/test.csv");
     //text_controller.StartChat();
-
-
 }
 
 function windowLoad() {

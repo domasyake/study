@@ -1,11 +1,10 @@
-class StepManager
-{
+class StepManager {
+
     constructor(text_controller,save_data_manager)
     {
         this.text_controller=text_controller;
         this.save_data_manager=save_data_manager;
         this.step_display=document.getElementById("step");
-
     }
 
     async StartStep()
