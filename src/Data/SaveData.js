@@ -6,7 +6,7 @@ class SaveData{
         this.table=[];
         for (let i=0;i<table.length;i++){
             var item=table[i];
-            this.table.push(new SaveDataColumn(item.element_id,item.unique_id,item.user_saved_name))
+            this.table.push(new SaveDataColumn(item.element_id,item.unique_id,item.user_saved_name,item.delete_able))
         }
         this.order=order;
     }

@@ -7,20 +7,7 @@
        "priority":3,
        "parent_element": [-1],
        "child_category":[],
-       "matches":[
-         {
-           "similar_words": ["ターンの"],
-           "help_text":""
-         },
-         {
-           "similar_words": ["プレイヤー"],
-           "help_text":""
-         },
-         {
-           "similar_words": ["保存する"],
-           "help_text":""
-         }
-       ],
+       "matches":[],
        "irregular_matches": [],
        "hint_text": "",
        "research_help_words":["c 変数宣言"],
@@ -66,16 +53,7 @@
        "priority":3,
        "parent_element": [-1],
        "child_category":[3,4,5,6,7,8,9,10],
-       "matches":[
-         {
-           "similar_words": ["9回"],
-           "help_text":""
-         },
-         {
-           "similar_words": ["ループ"],
-           "help_text":""
-         }
-       ],
+       "matches":[],
        "irregular_matches": [],
        "hint_text": "",
        "research_help_words":["c for"],
@@ -99,7 +77,12 @@
            "help_text":"マス目をどうするのか"
          }
        ],
-       "irregular_matches": [],
+       "irregular_matches": [
+         {
+           "similar_words": ["ターン"],
+           "help_text":"ターン数の表示は別の機能にした方がよいです"
+         }
+       ],
        "hint_text": "画面にどんな処理をすれば、○✕ゲームができるか",
        "research_help_words":["c 二次元配列","c 二重ループ","c 入出力"],
        "move_help_text":"描画はループの中の最初に行いましょう",
@@ -112,12 +95,7 @@
        "priority":0,
        "parent_element": [3],
        "child_category":[5,6],
-       "matches":[
-         {
-           "similar_words": ["ユーザーのターン"],
-           "help_text":""
-         }
-       ],
+       "matches":[],
        "irregular_matches": [],
        "hint_text": "",
        "research_help_words":["c if"],
@@ -176,7 +154,7 @@
          },
          {
            "similar_words": ["付ける","つける","描画する","表示する"],
-           "help_text":"○を表示するのは別の機能です。ここでは○のデータをどう取り扱うのか考えましょう"
+           "help_text":"○を表示するのは別の機能です。"
          }
        ],
        "hint_text": "入力を基に何をするのか",
@@ -191,12 +169,7 @@
        "priority":0,
        "parent_element": [3],
        "child_category":[8],
-       "matches":[
-         {
-           "similar_words": ["敵のターン"],
-           "help_text":""
-         }
-       ],
+       "matches":[],
        "irregular_matches": [],
        "hint_text": "",
        "research_help_words":["c if"],
@@ -228,7 +201,7 @@
        [
          {
            "similar_words": ["付ける","つける","描画する","表示する"],
-           "help_text":"✕を表示するのは別の機能です。ここでは✕のデータをどう取り扱うのか考えましょう"
+           "help_text":"✕を表示するのは別の機能です。"
          }
        ],
        "hint_text": "敵の行動に必要な機能",
@@ -289,20 +262,7 @@
        "priority":2,
        "parent_element": [3],
        "child_category":[],
-       "matches":[
-         {
-           "similar_words": ["ループ"],
-           "help_text":""
-         },
-         {
-           "similar_words": ["勝者が"],
-           "help_text":""
-         },
-         {
-           "similar_words": ["出たら"],
-           "help_text":""
-         }
-       ],
+       "matches":[],
        "irregular_matches": [],
        "hint_text": "",
        "research_help_words":["c ループ　抜ける"],
@@ -316,20 +276,7 @@
        "priority":2,
        "parent_element": [3],
        "child_category":[],
-       "matches":[
-         {
-           "similar_words": ["終わりに"],
-           "help_text":""
-         },
-         {
-           "similar_words": ["プレイヤーを"],
-           "help_text":""
-         },
-         {
-           "similar_words": ["切り替える"],
-           "help_text":""
-         }
-       ],
+       "matches":[],
        "irregular_matches": [],
        "hint_text": "",
        "research_help_words":["c if"],
@@ -345,7 +292,7 @@
        "child_category":[],
        "matches":[
          {
-           "similar_words": ["結果"],
+           "similar_words": ["結果を"],
            "help_text":""
          },
          {
@@ -368,7 +315,7 @@
        "child_category":[],
        "matches":[
          {
-           "similar_words": ["結果"],
+           "similar_words": ["結果を"],
            "help_text":""
          },
          {
@@ -397,11 +344,11 @@
        "matches":[
          {
            "similar_words": ["ターン数","今のターン"],
-           "help_text":""
+           "help_text":"何を表示しますか？"
          },
          {
            "similar_words": ["表示","出す","出力"],
-           "help_text":""
+           "help_text":"ターン数をどうしますか？"
          }
        ],
        "irregular_matches": [

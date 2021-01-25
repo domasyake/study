@@ -33,7 +33,7 @@ class SplitController{
     }
 
     async checkWord(){
-        let word=await this.getInput();
+        const word=await this.getInput();
         console.log("入力:"+word);
 
         let targets=this.column
@@ -74,8 +74,8 @@ class SplitController{
             //助言が一個もなかったら成功
             if(help_texts.length===0){
                 console.log("成功");
-                this.save_data_manager.pushTable(target.element_id,word);
-                this.card_controller.addCard(target,word);
+                this.save_data_manager.pushTable(target.element_id,word,true);
+                this.card_controller.addCard(target.element_id,word,true);
                 this.resetInput();
                 return this.split_data.agree;
             }else{
@@ -100,32 +100,35 @@ class SplitController{
     }
 
     exampleSplit(index){
+        this.SwitchDisplay(true);
         const data=this.split_data.example_func_data[index];
         for (let i=0;i<data.length;i++){
-            this.save_data_manager.pushTable(data[i].element_id,data[i].name);
+            if(this.save_data_manager.save_data.table.some(n=>n.element_id===data[i].element_id))continue;
+            this.save_data_manager.pushTable(data[i].element_id,data[i].name,false);
+            this.card_controller.addCard(data[i].element_id,data[i].name,false);
         }
     }
 
     splitForMove(){
         const data=this.split_data.for_move_func_data;
         for (let i=0;i<data.length;i++){
-            this.save_data_manager.pushTable(data[i].element_id,data[i].name);
+            if(this.save_data_manager.save_data.table.some(n=>n.element_id===data[i].element_id))continue;
+            this.save_data_manager.pushTable(data[i].element_id,data[i].name,false);
         }
     }
 
-
     getHint(){
-        let filted=this.column.filter(n=>!this.save_data_manager.save_data.table
+        const filtered=this.column.filter(n=>!this.save_data_manager.save_data.table
             .some(m=>m.element_id===n.element_id))
             .filter(n=>n.hint_text!=="");
-        if(filted.length===0){
+        if(filtered.length===0){
             return "";
         }else{
             this.current_hint_index++
-            if(this.current_hint_index>=filted.length){
+            if(this.current_hint_index>=filtered.length){
                 this.current_hint_index=0;
             }
-            return filted[this.current_hint_index].hint_text;
+            return filtered[this.current_hint_index].hint_text;
         }
     }
 
@@ -136,6 +139,7 @@ class SplitController{
         this.hint_controller.SwitchDisplay(true);
     }
 
+    //== 入力周りのメソッド ==
     resetInput(){
         this.input_box.value="";
     }
