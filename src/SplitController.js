@@ -25,7 +25,6 @@ class SplitController{
         //初期化
         this.loadJson();
         this.SwitchDisplay(false);
-
     }
 
     async loadJson(){
@@ -38,47 +37,45 @@ class SplitController{
 
         let targets=this.column
             .filter(n=>n.matches.length!==0)//length0はexample用の機能データなので除外
-            .filter(n=>n.matches.some(m=>m.similar_words.some(k=>word.includes(k))));
-        let match_num=0;
-        let target=null;
-        for (let i=0;i<targets.length;i++){
-            let temp_target=targets[i];
-            console.log("matched"+temp_target.element_id)
-            if(this.save_data_manager.save_data.table.some(n=>n.element_id===temp_target.element_id)){
-                continue;
-            }
-            let counter=0;
-            for (let j=0;j<temp_target.matches.length;j++){
-                if(temp_target.matches[j].similar_words.some(n=>word.includes(n))){
-                    counter++;
-                }
-            }
-            if(match_num<counter){
-                target=temp_target;
-                match_num=counter;
-            }
-        }
+            .filter(n=>!this.save_data_manager.save_data.table.some(m=>m.element_id===n.element_id))//既に分解済みの機能も除外
+            .map(n=>{ //マッチ結果をマップする
+               return{
+                   data:n,
+                   match_num:n.matches.filter(m=>m.similar_words.some(k=>word.includes(k))).length
+               }
+            })
+            .filter(n=>n.match_num>0) //１つでも条件満たしてるのだけでフィルタ
+            .sort((n,m)=>{ //降順ソート
+                if( n > m ) return -1;
+                if( n < m ) return 1;
+                return 0;
+            });
 
-        //該当するのは見つかった
-        if (target!==null) {
+        //見つかった
+        if (targets.length>0) {
+            //降順ソートしてるので先頭のが一番多く条件に引っ掛かってるのでマッチ
+            let target=targets[0].data;
             let help_texts=[];
-            console.log("TargetMatchFinal:\n"+target.element_id)
+            console.log("TargetMatch:\n"+target.element_id)
             for (let i=0;i<target.matches.length;i++){
+                //見たいしてない条件があったら助言をリストに追加
                 if(!target.matches[i].similar_words.some(n=>word.includes(n))){
                     help_texts.push(target.matches[i].help_text);
                 }
             }
+            //例外条件判定
             for (let i=0;i<target.irregular_matches.length;i++){
                 if(target.irregular_matches[i].similar_words.some(n=>word.includes(n))){
                     console.log("irregular match text:"+target.matches[i].help_text)
                     help_texts.push(target.irregular_matches[i].help_text);
                 }
             }
-            //成功
+            //助言が一個もなかったら成功
             if(help_texts.length===0){
                 console.log("成功");
                 this.save_data_manager.pushTable(target.element_id,word);
-                return {mess:this.split_data.agree,success:true};
+                this.resetInput();
+                return this.split_data.agree;
             }else{
                 let res=this.split_data.near;
                 if(help_texts.length>2){
@@ -86,15 +83,15 @@ class SplitController{
                 }else{
                     help_texts.filter(n=>n!=="").forEach(n=>res+="\n・"+n);
                 }
-                return {mess:res,success:false};
+                return res;
             }
         } else {
-            return {mess:this.split_data.disagree,success:false};
+            return this.split_data.disagree
         }
     }
 
     checkComplete(){
-        //Priority3のカラムのElementIdが全てSaveDataにあるかチェック
+        //Priority3の機能のElementIdが全てSaveDataにあるかチェック
         return this.column.filter(n=>n.priority===3)
             .every(n=>this.save_data_manager.save_data.table
             .some(m=>m.element_id===n.element_id));

@@ -45,13 +45,14 @@ class TextController {
             //ローカルサーバだと改行コードも含まれてしまうのでこっち使う
             let mode=String(item[1]).slice(0,-1);
             let mode_arg=-1;
+            //コマンドから数値引っこ抜く
             if(this.regex.test(mode)){
                 let match_char=this.regex.exec(mode)[0];
                 mode_arg=Number(match_char);
                 mode=mode.replace(match_char,"");
             }
 
-            console.log("command:"+mode+" , arg:"+mode_arg)
+            console.log("command:"+mode+" , arg:"+mode_arg);
             switch (mode) {
                 case '':
                     this.setText(item[0]);
@@ -86,12 +87,11 @@ class TextController {
                     break;
                 case "loopSplit":
                     this.split_controller.SwitchDisplay(true);
+                    //台詞表示して、SplitControllerから次の台詞来るまで待つ
                     this.setText(item[0]);
                     const result=await this.split_controller.checkWord();
-                    this.setText(result.mess);
-                    if(result.success){
-                        this.split_controller.resetInput();
-                    }
+                    this.setText(result);
+                    //クリック待ってから終了判定。失敗したらカウンタを-1してループ
                     await this.WaitClick();
                     if(!this.split_controller.checkComplete()){
                         current_line--;
@@ -99,9 +99,6 @@ class TextController {
                     break;
                 case "endSplit":
                     this.split_controller.SwitchDisplay(false);
-                    this.input_box.style.display="none";
-                    this.input_submit.style.display="none";
-                    this.hint_controller.SwitchDisplay(false);
                     break;
 
                 case "prepareMove":
@@ -159,8 +156,6 @@ class TextController {
         this.chat_text.innerText=word;
     }
 
-
-
     async WaitClick(){
         this.SwitchTriAngle(true);
         await this.on_area_click.first().toPromise();
@@ -174,5 +169,4 @@ class TextController {
     ClickArea(){
         this.on_area_click.onNext();
     }
-
 }
