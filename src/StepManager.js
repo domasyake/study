@@ -14,7 +14,7 @@ class StepManager {
         await this.text_controller.LoadData("script/step_"+current_step+".csv");
         await this.text_controller.StartChat();
         current_step++;
-        if(current_step<5){
+        if(current_step<4){
             this.save_data_manager.save_data.current_step=current_step;
             this.save_data_manager.save_data.current_line=0;
             this.save_data_manager.Save();
