@@ -1,0 +1,31 @@
+{
+  "current_step":1,
+  "current_line":9,
+  "order":[],
+  "tables":[
+    {
+      "element_id":3,
+      "unique_id":1,
+      "user_saved_name":"9回ループさせる",
+      "delete_able":false
+    },
+    {
+      "element_id":12,
+      "unique_id":2,
+      "user_saved_name":"勝者が出たらループを終わらせる",
+      "delete_able":false
+    },
+    {
+      "element_id":1,
+      "unique_id":3,
+      "user_saved_name":"ターンのプレイヤーを保存する変数を用意する",
+      "delete_able":false
+    },
+    {
+      "element_id":13,
+      "unique_id":4,
+      "user_saved_name":"ターンの終わりにプレイヤーを切り替える",
+      "delete_able":false
+    }
+  ]
+}
