@@ -36,6 +36,14 @@ class SaveDataManager {
         }
     }
 
+    DebugLoad(debug_data){
+        Cookies.set("save_data", debug_data, {expires: 365});
+        const data=Cookies.get('save_data');
+        console.log("デバッグデータ読み込み完了:"+data);
+        let json=JSON.parse(data);
+        this.save_data=new SaveData(json.current_step,json.current_line,json.tables,json.order);
+    }
+
     pushTable(element_id,name,delete_able){
         let uid_max=0;
         if(this.save_data.table.length!==0){
