@@ -37,8 +37,7 @@ class SaveDataManager {
     }
 
     DebugLoad(debug_data){
-        let json=JSON.parse(debug_data);
-        this.save_data=new SaveData(json.current_step,json.current_line,json.tables,json.order);
+        this.save_data=new SaveData(debug_data.current_step,debug_data.current_line,debug_data.tables,debug_data.order);
         this.Save();
     }
 
