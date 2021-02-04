@@ -8,7 +8,7 @@ async function InitOnDomLoad() {
 
     const save_data_manager=new SaveDataManager(false);
     const debug_data_json = await getJsonData("ForDisplay/Step2Data.json");
-
+    console.log("aaaaaaaa\n"+debug_data_json)
     save_data_manager.DebugLoad(debug_data_json);
 
     const card_controller = new FunctionCardController(save_data_manager);
