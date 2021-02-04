@@ -7,7 +7,7 @@ async function InitOnDomLoad() {
     console.log(column_json)
 
     const save_data_manager=new SaveDataManager(false);
-    const debug_data_json = await getJsonData("ForDisplay/Step2Data.json");
+    const debug_data_json = await getJsonData("ForDisplay/Step1Data.json");
     save_data_manager.DebugLoad(debug_data_json);
 
     const card_controller = new FunctionCardController(save_data_manager);
